@@ -1,0 +1,4 @@
+.env
+.private/
+products/*/
+.DS_Store
