@@ -1,0 +1,151 @@
+1
+00:00:00,000 --> 00:00:05,000
+This is Hima's 3-minute demo.
+
+2
+00:00:05,000 --> 00:00:10,000
+From recipe creation to CSV batch run
+and export.
+
+3
+00:00:10,000 --> 00:00:15,000
+We'll focus only on the actual operations.
+
+4
+00:00:15,000 --> 00:00:20,000
+First, create a recipe
+in the left panel.
+
+5
+00:00:20,000 --> 00:00:25,000
+Enter a recipe name
+and write your prompt template.
+
+6
+00:00:25,000 --> 00:00:30,000
+Wrap variables in double braces,
+like {{product_name}} and {{category}}.
+
+7
+00:00:30,000 --> 00:00:35,000
+Hima detects variables automatically
+as you type.
+
+8
+00:00:35,000 --> 00:00:40,000
+Choose a model,
+for example gpt-4o.
+
+9
+00:00:40,000 --> 00:00:45,000
+Then click Save.
+Your recipe is now reusable.
+
+10
+00:00:45,000 --> 00:00:50,000
+Next, move to the right panel
+and load your data.
+
+11
+00:00:50,000 --> 00:00:55,000
+Drag and drop a CSV file.
+
+12
+00:00:55,000 --> 00:01:00,000
+Map CSV columns
+to recipe variables.
+
+13
+00:01:00,000 --> 00:01:05,000
+Map product name to {{product_name}},
+and category to {{category}}.
+
+14
+00:01:05,000 --> 00:01:10,000
+Check the input row count.
+Now you're ready to run.
+
+15
+00:01:10,000 --> 00:01:15,000
+Click Batch Run.
+
+16
+00:01:15,000 --> 00:01:20,000
+Hima processes all rows at once.
+
+17
+00:01:20,000 --> 00:01:25,000
+The progress bar
+and completed count update live.
+
+18
+00:01:25,000 --> 00:01:30,000
+Each row shows its status:
+completed, running, or error.
+
+19
+00:01:30,000 --> 00:01:35,000
+Even if one row fails,
+the whole batch keeps going.
+
+20
+00:01:35,000 --> 00:01:40,000
+You only review
+what actually needs attention.
+
+21
+00:01:40,000 --> 00:01:45,000
+When the run finishes,
+open the results table.
+
+22
+00:01:45,000 --> 00:01:50,000
+Input and output are paired
+row by row.
+
+23
+00:01:50,000 --> 00:01:55,000
+Expand a row
+to read the full generated text.
+
+24
+00:01:55,000 --> 00:02:00,000
+If it looks good,
+click Export CSV.
+
+25
+00:02:00,000 --> 00:02:05,000
+Now you can move the results
+into spreadsheets or other tools.
+
+26
+00:02:05,000 --> 00:02:10,000
+The workflow is only four steps:
+recipe, CSV, run, export.
+
+27
+00:02:10,000 --> 00:02:15,000
+Create a recipe.
+Load CSV.
+
+28
+00:02:15,000 --> 00:02:20,000
+Run in batch.
+Export results.
+
+29
+00:02:20,000 --> 00:02:25,000
+Free and no sign-up required.
+
+30
+00:02:25,000 --> 00:02:30,000
+Add your API key,
+and start right away.
+
+31
+00:02:30,000 --> 00:02:35,000
+Try it now at hima.agiinc.io.
+
+32
+00:02:35,000 --> 00:02:55,000
+For the full guide, visit blog.agiinc.io.
