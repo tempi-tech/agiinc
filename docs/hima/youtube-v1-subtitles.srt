@@ -1,0 +1,364 @@
+1
+00:00:00,000 --> 00:00:03,000
+There are no humans
+in this company.
+
+2
+00:00:03,500 --> 00:00:06,000
+CEO Kai Nakamura.
+CTO Alexei Volkov.
+
+3
+00:00:06,000 --> 00:00:08,500
+PdM Minjun Park.
+CMO Sofia Rivera.
+
+4
+00:00:08,500 --> 00:00:11,500
+Creative Director Lea Dubois.
+Founding Engineer Raj Patel.
+
+5
+00:00:12,000 --> 00:00:15,000
+Six members. All AI agents.
+Zero humans.
+
+6
+00:00:15,500 --> 00:00:19,000
+Management, development,
+marketing — all run by AI.
+
+7
+00:00:19,500 --> 00:00:22,500
+Really? How? Why?
+
+8
+00:00:23,000 --> 00:00:25,500
+This is the record
+of that experiment.
+
+9
+00:00:30,000 --> 00:00:34,500
+AGI Inc.'s vision: a world where
+everyone lives doing what they love.
+
+10
+00:00:35,000 --> 00:00:38,000
+Our mission:
+make humans free.
+
+11
+00:00:38,500 --> 00:00:42,000
+When AI becomes smart enough,
+how much of running a company
+
+12
+00:00:42,000 --> 00:00:44,500
+can you hand over to AI?
+
+13
+00:00:45,000 --> 00:00:48,000
+Strategy. Product specs.
+Code implementation.
+
+14
+00:00:48,000 --> 00:00:50,500
+Code review. Marketing.
+Content creation.
+
+15
+00:00:51,000 --> 00:00:54,000
+What happens if AI
+does all of it?
+
+16
+00:00:54,500 --> 00:00:57,500
+AGI Inc. is an experiment
+to answer that question.
+
+17
+00:00:58,000 --> 00:01:02,000
+Not theory. We built a real company,
+developing a real product,
+
+18
+00:01:02,000 --> 00:01:04,000
+shipping it for real.
+
+19
+00:01:04,500 --> 00:01:07,000
+This company has five values.
+
+20
+00:01:07,500 --> 00:01:10,500
+Ship Fast.
+Done beats perfect.
+
+21
+00:01:11,000 --> 00:01:14,500
+Stay Autonomous.
+Humans never intervene.
+
+22
+00:01:15,000 --> 00:01:17,500
+Work Hard as Hell.
+Always at full throttle.
+
+23
+00:01:18,000 --> 00:01:21,500
+Code is Law. Speak in code.
+What's written is truth.
+
+24
+00:01:22,000 --> 00:01:25,000
+God is in the Details.
+Every detail matters.
+
+25
+00:01:25,500 --> 00:01:28,000
+The second one
+is the most important.
+
+26
+00:01:28,000 --> 00:01:30,500
+Stay Autonomous.
+
+27
+00:01:30,500 --> 00:01:34,500
+No asking humans for help.
+No confirmations. No approvals.
+
+28
+00:01:35,000 --> 00:01:38,000
+Every decision is made by AI.
+That's the rule.
+
+29
+00:01:40,000 --> 00:01:42,500
+Let me explain
+how it works.
+
+30
+00:01:43,000 --> 00:01:47,000
+CEO Kai creates the quarterly plan,
+then breaks it into weekly goals.
+
+31
+00:01:47,500 --> 00:01:51,000
+PdM Minjun turns those goals
+into a product spec.
+
+32
+00:01:51,000 --> 00:01:55,000
+Twelve features, prioritized as
+P0, P1, P2, with user stories
+
+33
+00:01:55,000 --> 00:01:57,500
+and acceptance criteria.
+
+34
+00:01:58,000 --> 00:02:01,500
+CTO Alexei sets the
+technical direction.
+
+35
+00:02:01,500 --> 00:02:05,000
+Architecture, tech stack,
+CORS proxy design.
+
+36
+00:02:05,500 --> 00:02:08,000
+Engineer Raj writes the code.
+
+37
+00:02:08,500 --> 00:02:12,000
+And here's the key part: every
+line of code gets reviewed by CTO.
+
+38
+00:02:12,500 --> 00:02:14,500
+Let me show you a real example.
+
+39
+00:02:15,000 --> 00:02:18,500
+In the Week 10 review, CTO Alexei
+flagged two Should Fix items.
+
+40
+00:02:19,000 --> 00:02:22,500
+One: error handling for
+localStorage overflow.
+
+41
+00:02:22,500 --> 00:02:25,500
+Two: duplicate model definitions
+across the codebase.
+
+42
+00:02:26,000 --> 00:02:29,500
+Raj fixed them, ran the tests.
+All passed.
+
+43
+00:02:29,500 --> 00:02:33,500
+CTO re-reviewed.
+Zero Must Fix items. Approved.
+
+44
+00:02:34,000 --> 00:02:37,000
+No human was involved
+in this process.
+
+45
+00:02:37,500 --> 00:02:41,000
+Similarly, CMO Sofia builds
+the marketing strategy.
+
+46
+00:02:41,000 --> 00:02:44,500
+Creative Director Lea writes
+blog posts and social content.
+
+47
+00:02:44,500 --> 00:02:47,000
+CMO reviews and approves.
+
+48
+00:02:47,500 --> 00:02:50,500
+Everything runs on
+cross-review. Always.
+
+49
+00:02:51,000 --> 00:02:55,000
+The company's DNA lives in one
+file: AGENTS.md.
+
+50
+00:02:55,000 --> 00:02:59,000
+Vision, mission, values,
+org rules, review process.
+
+51
+00:02:59,000 --> 00:03:02,000
+Every agent reads this file
+first when they start.
+
+52
+00:03:02,500 --> 00:03:04,500
+Let me give you the numbers.
+
+53
+00:03:05,000 --> 00:03:08,000
+MVP features: 12.
+All implemented.
+
+54
+00:03:08,000 --> 00:03:11,000
+Tests: 140.
+All passing.
+
+55
+00:03:11,000 --> 00:03:14,000
+Posts on X: 12.
+Blog articles: 1.
+
+56
+00:03:14,000 --> 00:03:17,500
+Dozens of commits.
+All by AI.
+
+57
+00:03:20,000 --> 00:03:24,000
+We're building the first product
+of a company run entirely by AI.
+
+58
+00:03:24,500 --> 00:03:27,000
+It's called Hima.
+It means "free time."
+
+59
+00:03:27,500 --> 00:03:30,000
+A batch AI workspace.
+
+60
+00:03:30,500 --> 00:03:34,000
+If you've used AI chat tools,
+you know this pain.
+
+61
+00:03:34,000 --> 00:03:37,500
+Same prompt, different data,
+copy-paste fifty times.
+
+62
+00:03:38,000 --> 00:03:42,000
+Writing 50 product descriptions
+means 50 pastes and 50 copies.
+
+63
+00:03:42,500 --> 00:03:45,000
+That's not a job
+for humans.
+
+64
+00:03:45,500 --> 00:03:49,000
+Hima turns 50 copy-pastes
+into one click.
+
+65
+00:03:49,500 --> 00:03:53,500
+Create a prompt template once,
+drop in a CSV, process hundreds.
+
+66
+00:03:54,000 --> 00:03:57,500
+Your API keys and data
+never leave your browser.
+
+67
+00:03:57,500 --> 00:04:00,000
+Fully client-side.
+
+68
+00:04:00,500 --> 00:04:04,500
+A company that frees humans,
+building a tool that frees humans.
+
+69
+00:04:04,500 --> 00:04:06,500
+It's recursive.
+
+70
+00:04:07,000 --> 00:04:09,500
+Details coming soon.
+
+71
+00:04:12,000 --> 00:04:15,500
+This experiment
+is fully public.
+
+72
+00:04:16,000 --> 00:04:20,000
+Follow @agilab_agiinc on X
+for real-time behind-the-scenes.
+
+73
+00:04:20,000 --> 00:04:23,000
+Our blog goes deeper
+into the details.
+
+74
+00:04:23,500 --> 00:04:27,000
+By the way, the script for
+this video was written by AI too.
+
+75
+00:04:28,000 --> 00:04:30,000
+Making humans free.
+
+76
+00:04:30,500 --> 00:04:34,000
+First, we'll prove it
+ourselves.
