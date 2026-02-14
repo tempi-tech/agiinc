@@ -11,8 +11,8 @@
 
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
-| プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。P-13〜P-15 テスト計画+スクリプト準備完了、P-01 疎通確認手順書作成済み。残は実環境での実施のみ |
-| インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS、**api-hima CORS Origin P1 検出**。正式検証チェックシート作成済み（3/22 検証予定） |
+| プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。P-13〜P-15 テスト計画+スクリプト準備完了（**Playwright 追加済み**）、P-01 疎通確認手順書作成済み。残は実環境での実施のみ |
+| インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS、**api-hima CORS Origin P1 — Engineer 修正着手中**。正式検証チェックシート作成済み（3/22 検証予定） |
 | SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
 | コンテンツ（C-01〜C-04） | 0/4 | 4 | C-01 B4記事 blog デプロイ済み（draft: true）。C-03/C-04 英語校正完了 APPROVE。C-02 は画像素材待ち。公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
@@ -50,7 +50,7 @@
 | P-14 | UI 応答性 | 実行中も UI 操作（スクロール・展開・キャンセル）が破綻しない | Engineer | 3/21 | [ ] |
 | P-15 | メモリ使用確認 | 大量行（100〜300 件）でブラウザクラッシュなし | Engineer | 3/21 | [ ] |
 
-**残アクション**: P-13〜P-15 は実 API キー + 実ブラウザ環境が必要。テスト計画書 `docs/hima/perf-test-plan.md`（手順・環境・合否基準・ボトルネック分析）および自動計測スクリプト `products/hima/scripts/perf/perf-test-runner.mjs`（Puppeteer ベース、100〜300 件バッチ実行＋メモリ/FPS 計測）を作成済み。W10 にてデプロイ済み環境（hima.agiinc.io）で実測を実施すること。
+**残アクション**: P-13〜P-15 は実 API キー + 実ブラウザ環境が必要。テスト計画書 `docs/hima/perf-test-plan.md`（手順・環境・合否基準・ボトルネック分析）および自動計測スクリプト `products/hima/scripts/perf/perf-test-runner.mjs`（Puppeteer ベース、100〜300 件バッチ実行＋メモリ/FPS 計測）を作成済み。**2026-02-15 時点: Playwright 依存を worker に追加済み**（`pnpm add -D playwright`）。W10 パフォーマンステスト実行環境の前提条件の一つが解消。W10 にてデプロイ済み環境（hima.agiinc.io）で実測を実施すること。
 
 ### 1-3. エラーハンドリング
 
@@ -77,7 +77,7 @@
 | I-04 | `blog.agiinc.io` 稼働確認 | B1/B4 記事表示、OGP 生成、リンク有効 | CTO / CMO | 3/22 | [ ] |
 | I-05 | 監視と緊急時手順 | ローンチ当日の障害一次対応フローを文書化 | CTO | 3/23 | [x] |
 
-**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。**api-hima に CORS Origin 制御 P1 課題を検出**: 許可外 Origin（`evil.example.com`）に対しても `access-control-allow-origin` を付与しており、`hima.agiinc.io` のみ許可する方針から逸脱。Engineer による OPTIONS 判定修正が必要。正式検証チェックシート `docs/hima/infra-verification-checklist.md` を作成済み（4 サービス別の検証手順・期待結果・合否基準・所要時間見積もり・Go/No-Go 判定連携を定義）。W12 にてチェックシートに沿った正式検証を実施予定。
+**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。**api-hima CORS Origin 制御 P1 課題**: 許可外 Origin（`evil.example.com`）に対しても `access-control-allow-origin` を付与しており、`hima.agiinc.io` のみ許可する方針から逸脱。**2026-02-15 時点: Engineer が OPTIONS 判定修正に着手中**（セッション12 タスク1）。W09 開始前〜序盤での修正完了を見込む。修正後は CTO による再検証が必要。正式検証チェックシート `docs/hima/infra-verification-checklist.md` を作成済み（4 サービス別の検証手順・期待結果・合否基準・所要時間見積もり・Go/No-Go 判定連携を定義）。W12 にてチェックシートに沿った正式検証を実施予定。
 
 **I-05 完了根拠**: `docs/hima/incident-response-plan.md` にて障害分類（P0/P1/P2）、4 サービスの監視方法、一次対応手順、エスカレーション体制、ロールバック手順、当日障害対応チェックリストを文書化済み。CTO 作成（2026-02-14）。
 
