@@ -60,7 +60,7 @@ AI が作った、AI を使い倒すためのツール。入れ子構造。
 
 使ってみた感想、聞かせてください。
 
-#BuildInPublic #AI
+#AGIInc #Hima
 
 ## 投稿メモ
 

@@ -25,7 +25,7 @@ Hima は、AI の繰り返し作業をまとめて処理する
 
 → https://hima.agiinc.io
 
-#BuildInPublic
+#AGIInc #Hima
 
 ## 投稿メモ
 

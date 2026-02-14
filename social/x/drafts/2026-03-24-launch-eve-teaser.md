@@ -23,7 +23,7 @@ Hima は、バッチ AI ワークスペース。
 
 https://hima.agiinc.io
 
-#BuildInPublic
+#AGIInc #Hima
 
 ## 投稿メモ
 

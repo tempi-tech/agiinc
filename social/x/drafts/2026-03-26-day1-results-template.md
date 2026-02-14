@@ -25,7 +25,7 @@ Hima、ローンチ初日の数字。
 
 → https://hima.agiinc.io
 
-#BuildInPublic #AI
+#AGIInc #Hima
 
 ## テンプレート変数
 

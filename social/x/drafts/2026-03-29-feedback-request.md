@@ -23,9 +23,9 @@ Hima を使ってくれた方へ。
 全部読みます。全部直します。
 
 リプライでも DM でも、どちらでも。
-→ hima.agiinc.io
+→ https://hima.agiinc.io
 
-#BuildInPublic
+#AGIInc #Hima
 
 ## 投稿メモ
 

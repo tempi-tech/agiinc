@@ -14,7 +14,7 @@
 
 LP を公開しました。
 
-hima.agiinc.io
+https://hima.agiinc.io
 
 レシピを作って、CSV を入れて、一括実行。
 「同じ作業を 50 回」の時間をまとめて削るための
@@ -23,7 +23,7 @@ hima.agiinc.io
 デモ GIF を貼ります。30 秒で全体像がつかめます。
 触ってみて、感想をください。
 
-#Hima #AI
+#AGIInc #Hima
 
 ## 投稿メモ
 

@@ -22,7 +22,7 @@ Show HN の反応まとめ。
 刺さった点も、足りない点も見えました。
 次の改善にそのまま反映します。
 
-#BuildInPublic
+#AGIInc #Hima
 
 ## 投稿メモ
 

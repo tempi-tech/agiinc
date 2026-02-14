@@ -24,7 +24,7 @@
 
 hima.agiinc.io
 
-#AI
+#AGIInc #Hima
 
 ## 投稿メモ
 
