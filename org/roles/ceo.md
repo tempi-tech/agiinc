@@ -30,7 +30,7 @@
 4. AMENDMENTS.md を読む
 4. plans/ から直近の weekly + 当日の daily を読む
 5. `./task list` で稼働中タスクを確認
-6. `git log --since="2 hours ago" --oneline` で直近の変更を確認
+6. `git log --since="3 hours ago" --oneline` で直近の変更を確認
 
 ## フェーズ
 
