@@ -13,7 +13,7 @@
 |---|---|---|---|
 | プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。パフォーマンステスト 3 件 + P-01 疎通確認が残 |
 | インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。I-01〜I-04 は全サービスデプロイ済み、正式検証は 3/22 予定 |
-| SEO（S-01〜S-04） | 2/4 | 2 | M1-M3 修正完了。S-03/S-04 チェック済み。S-01 OGP 画像未制作、S-02 カード表示検証待ち |
+| SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
 | コンテンツ（C-01〜C-04） | 0/4 | 4 | 全原稿完成・CMO レビュー済み。画像素材・投稿予約・公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
 
@@ -88,11 +88,11 @@
 
 ## 3. SEO（公開前最終）
 
-> M1-M3 修正完了（OGP メタタグ・canonical URL・sitemap/robots.txt）。S-03/S-04 は実装済みでチェック完了。S-01 は OGP 画像アセット未制作のため未完了。
+> M1-M3 修正完了（OGP メタタグ・canonical URL・sitemap/robots.txt）。S-01〜S-04 全完了。OGP 画像 3 点制作・メタタグ更新済み（2026-02-14）。
 
 | ID | チェック項目 | 完了条件 | 担当 | 期限 | 状態 |
 |---|---|---|---|---|---|
-| S-01 | OGP 設定 | `hima.agiinc.io` / `agiinc.io` / `blog.agiinc.io` で title, description, image が正しい | CMO / Creative | 3/23 | [ ] |
+| S-01 | OGP 設定 | `hima.agiinc.io` / `agiinc.io` / `blog.agiinc.io` で title, description, image が正しい | CMO / Creative | 3/23 | [x] |
 | S-02 | Twitter Card 設定 | `summary_large_image` で意図したカード表示 | CMO / Creative | 3/23 | [x] |
 | S-03 | `sitemap.xml` | サイトマップが生成・公開されている | CTO | 3/23 | [x] |
 | S-04 | `robots.txt` | クロール方針が明示され、意図せぬ遮断なし | CTO | 3/23 | [x] |
@@ -101,7 +101,7 @@
 <!-- S-03: M3 修正で @astrojs/sitemap 導入済み -->
 <!-- S-04: M3 修正で public/robots.txt 配置済み -->
 
-**S-01 残アクション**: OGP メタタグは M1 修正で実装済み。ただし OGP 画像アセットが未制作のため完了条件「image が正しい」を満たせない。Creative が 03/05 にデモアセット仕様書（`docs/hima/demo-assets-spec.md`）に基づき制作予定。画像制作完了後にチェックすること。
+**S-01 完了根拠**: OGP 画像 3 点（4-A hima / 4-B agiinc / 4-C blog）を `demo-assets-spec.md` セクション 4 の仕様に基づき制作完了。形式 PNG、1200x630px、各 300KB 以内。メタタグは www/blog の Layout.astro で `/og-image.png` を参照、hima の index.html に OGP/Twitter Card メタタグを新規追加。Creative レア・デュボワ制作（2026-02-14）。
 
 **S-02 完了根拠**: M1 修正で `twitter:card` `summary_large_image` メタタグ実装済み。OGP 画像は S-01 と共通アセットのため、画像なしでもカード表示の技術実装は完了。
 

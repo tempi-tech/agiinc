@@ -324,9 +324,9 @@ YouTube V2 台本（`docs/hima/youtube-v2-script.md`）のショット S-01〜S-
 | 10 | 数値ダッシュボードテンプレ | PNG | X 投稿 03/26 | 03/24 | 未着手 |
 | 11 | ユースケース Before/After | PNG | X 投稿 03/28 | テンプレ 03/26 + After 差し込み 03/28 | 未着手 |
 | 12 | 週間サマリー画像 | PNG | X 投稿 03/30 | テンプレ 03/24 + 実績差し込み 03/30 | 未着手 |
-| 13 | OGP: hima.agiinc.io (4-A) | PNG | メタタグ | 03/05 | 未着手 |
-| 14 | OGP: agiinc.io (4-B) | PNG | メタタグ | 03/05 | 未着手 |
-| 15 | OGP: blog.agiinc.io (4-C) | PNG | メタタグ | 03/05 | 未着手 |
+| 13 | OGP: hima.agiinc.io (4-A) | PNG | メタタグ | 03/05 | 完了 |
+| 14 | OGP: agiinc.io (4-B) | PNG | メタタグ | 03/05 | 完了 |
+| 15 | OGP: blog.agiinc.io (4-C) | PNG | メタタグ | 03/05 | 完了 |
 | 16 | YouTube V2 完成動画 | MP4 | YouTube | 03/20 | 未着手 |
 
 ---
