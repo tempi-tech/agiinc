@@ -1,20 +1,20 @@
 # Hima ローンチ準備チェックリスト（2026-03-25）
 
-> PdM パク・ミンジュン | 2026-02-14 更新 | ステータス: 実行管理版（ローンチ準備）
+> PdM パク・ミンジュン | 2026-02-15 更新 | ステータス: 実行管理版（ローンチ準備）
 
 ## 概要
 
 ローンチ日 **2026-03-25（水）** に向けた、プロダクト・技術・コンテンツ横断の最終チェックリスト。
 参照: `docs/hima/mvp-spec.md` / `docs/hima/tech-architecture.md` / `docs/hima/launch-content-strategy.md` / `docs/hima/marketing-strategy.md`
 
-### 進捗サマリー（2026-02-14 時点）
+### 進捗サマリー（2026-02-15 時点）
 
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
 | プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。P-13〜P-15 テスト計画+スクリプト準備完了、P-01 疎通確認手順書作成済み。残は実環境での実施のみ |
-| インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。I-01〜I-04 は全サービスデプロイ済み、正式検証チェックシート作成済み（3/22 検証予定） |
+| インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS、**api-hima CORS Origin P1 検出**。正式検証チェックシート作成済み（3/22 検証予定） |
 | SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
-| コンテンツ（C-01〜C-04） | 0/4 | 4 | 全原稿 APPROVE 済み・デモアセット仕様 APPROVE 済み・公開ロードマップ策定完了。画像素材制作・投稿予約・公開予約が残 |
+| コンテンツ（C-01〜C-04） | 0/4 | 4 | C-01 B4記事 blog デプロイ済み（draft: true）。C-03/C-04 英語校正完了 APPROVE。C-02 は画像素材待ち。公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
 
 ---
@@ -77,12 +77,12 @@
 | I-04 | `blog.agiinc.io` 稼働確認 | B1/B4 記事表示、OGP 生成、リンク有効 | CTO / CMO | 3/22 | [ ] |
 | I-05 | 監視と緊急時手順 | ローンチ当日の障害一次対応フローを文書化 | CTO | 3/23 | [x] |
 
-**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダの実装完了後、正式な稼働確認を 3/22 に実施すること。正式検証チェックシート `docs/hima/infra-verification-checklist.md` を作成済み（4 サービス別の検証手順・期待結果・合否基準・所要時間見積もり・Go/No-Go 判定連携を定義）。W12 にてチェックシートに沿った正式検証を実施予定。
+**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。**api-hima に CORS Origin 制御 P1 課題を検出**: 許可外 Origin（`evil.example.com`）に対しても `access-control-allow-origin` を付与しており、`hima.agiinc.io` のみ許可する方針から逸脱。Engineer による OPTIONS 判定修正が必要。正式検証チェックシート `docs/hima/infra-verification-checklist.md` を作成済み（4 サービス別の検証手順・期待結果・合否基準・所要時間見積もり・Go/No-Go 判定連携を定義）。W12 にてチェックシートに沿った正式検証を実施予定。
 
 **I-05 完了根拠**: `docs/hima/incident-response-plan.md` にて障害分類（P0/P1/P2）、4 サービスの監視方法、一次対応手順、エスカレーション体制、ロールバック手順、当日障害対応チェックリストを文書化済み。CTO 作成（2026-02-14）。
 
 <!-- セキュリティ進捗: HSTS/CSP セキュリティヘッダ仕様書完成、実装中 -->
-**セキュリティ進捗**: HSTS/CSP セキュリティヘッダ仕様書（`docs/hima/security-headers-spec.md`）が完成。全 4 サービス（hima / agiinc / blog / api-hima）に対する `Strict-Transport-Security` および `Content-Security-Policy` の実装方針を定義。CTO 作成、Engineer が実装中。
+**セキュリティ進捗**: HSTS/CSP セキュリティヘッダ全 4 サービス（hima / agiinc / blog / api-hima）に実装・デプロイ完了。CTO 回帰検証で全サービス HSTS/CSP ヘッダ付与を確認済み（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）。
 
 ---
 
@@ -120,18 +120,19 @@
 
 **進捗詳細**:
 
-- **C-01**: B4 記事本文は CMO レビュー APPROVE 済み（`content-review-final.md`）。公開ロードマップ策定完了（`content-publishing-roadmap.md`）。残作業 8 ステップ: B1 リンクのスラッグ付き URL 差し替え → フロントマター動作確認（CTO） → blog リポジトリ配置 → ステージングプレビュー → 公開予約設定（3/25 11:00 JST）
+- **C-01**: B4 記事本文は CMO レビュー APPROVE 済み（`content-review-final.md`）。公開ロードマップ策定完了（`content-publishing-roadmap.md`）。**blog.agiinc.io/posts/hima-how-to-use-guide/ に draft: true でデプロイ済み**（Astro ビルド成功、HTTP 200 確認、index.astro に draft フィルタ追加済み）。残作業: 3/25 に draft を外して公開 → 公開後リンク確認
 - **C-02**: ローンチスレッド 5 ツイート（T1-T5）は CMO レビュー APPROVE 済み。公開ロードマップ策定完了。残作業 12 ステップ: UI キャプチャ確認（3/12）→ デモ GIF 1-B 制作（3/14 納品）→ 図解画像 + BYOK 画像制作（3/21 納品）→ アセットレビュー → 投稿予約入稿 → プレビュー確認
-- **C-03**: 最終稿が `social/hn/2026-03-25-show-hn.md` に存在。英語テキスト完成。公開ロードマップ策定完了。残作業 8 ステップ: 英語校正最終レビュー → HN アカウント確認 → 最終確定 → 3/26 02:00 JST 手動投稿
-- **C-04**: 最終稿が `social/reddit/2026-03-26-launch.md` に存在。r/artificial + r/ChatGPT の 2 版を用意済み。公開ロードマップ策定完了。残作業 8 ステップ: 最終校正 → subreddit ルール確認 → アカウント確認 → 3/26 朝 JST 手動投稿
+- **C-03**: 最終稿が `social/hn/2026-03-25-show-hn.md` に存在。**英語校正完了・CMO APPROVE 済み**（タイトル 75 文字短縮・プレーンテキスト化・人称統一等 6 件修正。`docs/hima/content-review-hn-reddit.md`）。公開ロードマップ策定完了。残作業: HN アカウント確認 → 最終確定 → 3/26 02:00 JST 手動投稿
+- **C-04**: 最終稿が `social/reddit/2026-03-26-launch.md` に存在。r/artificial + r/ChatGPT の 2 版を用意済み。**英語校正完了・CMO APPROVE 済み**（clickbait 削除・CTA 追加等 4 件修正。`docs/hima/content-review-hn-reddit.md`）。公開ロードマップ策定完了。残作業: subreddit ルール確認 → アカウント確認 → 3/26 朝 JST 手動投稿
 
 **公開ロードマップ**: `docs/hima/content-publishing-roadmap.md` に C-01〜C-04 の全残作業ステップ、3 日間タイムライン（3/24 準備日 + 3/25 ローンチ日 + 3/26 翌日フォロー）、デモ GIF・画像素材の納品スケジュール、リスク対策 5 件、担当者別タスクサマリーを定義済み。
 
 <!-- デモアセット仕様書: CMO APPROVE済み（v2） -->
 **関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。デモ GIF 制作準備完了（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）。
 
-<!-- B2記事: CMO CONDITIONAL APPROVE、Creative修正待ち -->
-**関連進捗 — B2 記事**: B2 ブログ記事「AIのコピペ地獄を終わらせる — Himaの設計思想」（`docs/hima/blog-b2-article.md`）が CMO レビューで CONDITIONAL APPROVE（`docs/hima/content-review-b2.md`）。Creative による修正待ち。B2 はローンチ前公開予定の設計思想記事で、B4（使い方ガイド）との棲み分けが確認済み。
+**関連進捗 — B2 記事**: B2 ブログ記事「AIのコピペ地獄を終わらせる — Himaの設計思想」（`docs/hima/blog-b2-article.md`）が CMO レビューで正式 APPROVE 済み（`docs/hima/content-review-b2.md`）。Creative による CMO 指摘3点修正完了。blog.agiinc.io/posts/ai-copy-paste-hell/ にデプロイ済み。
+
+**関連進捗 — Zenn 記事**: CMO レビュー APPROVE 済み（テスト件数 166 件に更新・CTA リンク追加の 3 件修正反映。`docs/hima/content-review-hn-reddit.md`）。
 
 ---
 
