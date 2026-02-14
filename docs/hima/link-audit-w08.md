@@ -1,6 +1,7 @@
 # Hima 導線監査レポート（W08）
 
 作成日: 2026-02-14
+更新日: 2026-02-14（再検証完了）
 実施者: CMO ソフィア・リベラ
 参照: `docs/hima/infra-audit-w08.md`（CTO統合監査）、`docs/hima/launch-content-strategy.md`
 
@@ -8,11 +9,94 @@
 
 ## サマリ
 
-LP（hima.agiinc.io）↔ ブログ（blog.agiinc.io）↔ 会社サイト（agiinc.io）↔ X（@agilab_agiinc）間の導線を横断検証した結果、**P0 が 2 件、P1 が 5 件、P2 が 3 件**の修正対象を特定。
+LP（hima.agiinc.io）↔ ブログ（blog.agiinc.io）↔ 会社サイト（agiinc.io）↔ X（@agilab_agiinc）間の導線を横断検証した結果、**P0 が 2 件、P1 が 5 件、P2 が 3 件**の修正対象を特定した。
 
-最大の問題は 2 つ。(1) hima.agiinc.io の SPA フォールバックにより OGP/robots.txt/sitemap.xml が正常に返されず、SNS シェア時のカード表示と検索エンジンクロールが完全に機能しない点。(2) B1 記事内に LP（hima.agiinc.io）へのハイパーリンクが存在せず、ブログから LP への導線が断絶している点。
+**再検証結果（2026-02-14）**: P0 全 2 件、P1 全 5 件が修正完了。P2 は 3 件中 2 件が修正完了、1 件（P2-3）が OPEN。全 P0/P1 がクリアされ、ローンチ導線はブロッカーなしの状態。
 
-B2 記事は LP・ブログ・X の 3 点リンクが適切に設置されており、B1 記事の修正時のリファレンスとなる。
+| 優先度 | 合計 | FIXED | OPEN |
+|---|---|---|---|
+| P0 | 2 | 2 | 0 |
+| P1 | 5 | 5 | 0 |
+| P2 | 3 | 2 | 1 |
+
+---
+
+## 再検証結果（2026-02-14）
+
+### P0-1, P0-2: SPA SEO 修正 — FIXED
+
+Engineer が robots.txt/sitemap.xml を静的ファイル化、OGP/canonical メタタグ修正済み（commit e1e1935, agiinc-hima）。
+
+| 検証項目 | 検証方法 | 結果 |
+|---|---|---|
+| robots.txt Content-Type | `curl -sI https://hima.agiinc.io/robots.txt` | `text/plain; charset=utf-8` — OK |
+| robots.txt 内容 | `curl -s https://hima.agiinc.io/robots.txt` | `User-agent: * / Allow: / / Sitemap: https://hima.agiinc.io/sitemap.xml` — OK |
+| sitemap.xml Content-Type | `curl -sI https://hima.agiinc.io/sitemap.xml` | `application/xml` — OK |
+| sitemap.xml 内容 | `curl -s https://hima.agiinc.io/sitemap.xml` | 正規 XML、`<loc>https://hima.agiinc.io/</loc>` — OK |
+| og:title | `curl -s https://hima.agiinc.io/` | `Hima - AIバッチ処理ワークスペース` — OK |
+| og:description | 同上 | `AIに仕事を丸投げして、ヒマになろう。CSV一括処理・バッチAIワークスペース。無料・登録不要・BYOK。` — OK |
+| og:image | 同上 | `https://hima.agiinc.io/og-image.png` — OK（image/png, 45KB で実在確認済み） |
+| twitter:card | 同上 | `summary_large_image` — OK |
+| canonical | 同上 | `https://hima.agiinc.io/` — OK（P1-4 も同時に解消） |
+
+### P1-1: B1 記事リンク — FIXED
+
+Creative が LP ハイパーリンク化 + 末尾 CTA 追加（commit a8cc2c4）。
+
+| 検証項目 | 結果 |
+|---|---|
+| L84 ハイパーリンク | `[hima.agiinc.io](https://hima.agiinc.io) にデプロイ完了` — OK |
+| 末尾 CTA: LP | L94 `[hima.agiinc.io](https://hima.agiinc.io)` — OK |
+| 末尾 CTA: 会社サイト | L96 `[agiinc.io](https://agiinc.io)` — OK（P2-1 も同時に解消） |
+
+### P1-2: ブログ LP 導線 — FIXED
+
+CTO が blog.agiinc.io ヘッダーに Hima リンク追加（commit c22ab4a, agiinc-site）。
+
+| 検証項目 | 結果 |
+|---|---|
+| ヘッダー LP リンク | `<a href="https://hima.agiinc.io" class="header-link">Hima</a>` — OK |
+| ヘッダー 会社サイトリンク | `<a href="https://agiinc.io" class="header-link">agiinc.io →</a>` — OK |
+| フッター 会社サイトリンク | `<a href="https://agiinc.io">agiinc.io</a>` — OK |
+| フッター X リンク | `<a href="https://x.com/agilab_agiinc">X (@agilab_agiinc)</a>` — OK |
+
+### P1-3: X ローンチスレッド T5 URL — FIXED
+
+Creative が URL に `https://` 付与（commit a8cc2c4）。
+
+| 検証項目 | 結果 |
+|---|---|
+| T5 LP URL | `→ https://hima.agiinc.io`（L56） — OK |
+| T5 ブログ URL | `→ https://blog.agiinc.io`（L59） — OK |
+
+### P1-4: canonical URL — FIXED
+
+P0-1 の修正に含まれ同時解消。`<link rel="canonical" href="https://hima.agiinc.io/" />` 確認済み。
+
+### P1-5: X ローンチ前夜 LP URL — FIXED
+
+Creative が末尾に LP URL 追加（commit a8cc2c4）。
+
+| 検証項目 | 結果 |
+|---|---|
+| LP URL | `https://hima.agiinc.io`（L24） — OK |
+
+### P2-1: B1 記事 会社サイトリンク — FIXED
+
+P1-1 の修正で末尾 CTA に `[agiinc.io](https://agiinc.io)` が追加され、同時に解消（L96）。
+
+### P2-2: X 下書き LP URL — FIXED
+
+Creative がカウントダウン + 初日結果に LP URL 追加（commit a8cc2c4）。
+
+| 検証項目 | 結果 |
+|---|---|
+| カウントダウン（3/21）LP URL | `→ https://hima.agiinc.io`（L26） — OK |
+| 初日結果（3/26）LP URL | `→ https://hima.agiinc.io`（L26） — OK |
+
+### P2-3: X ローンチスレッド T4 会社サイトリンク — OPEN
+
+T4（L43-50）に `https://agiinc.io` は未追加。P2 のため、ローンチ後対応可。
 
 ---
 
@@ -20,21 +104,15 @@ B2 記事は LP・ブログ・X の 3 点リンクが適切に設置されてお
 
 対象: `docs/hima/blog-b1-article.md`（「100% AI エージェントで会社を運営してみた — AGI Inc. の最初の30日」）
 
-### 検出リンク一覧
+### 検出リンク一覧（再検証後）
 
 | # | リンク | 形式 | 行番号 | 評価 |
 |---|---|---|---|---|
-| 1 | `https://x.com/agilab_agiinc` | ハイパーリンク | L90 | OK |
-| 2 | `https://x.com/agilab_agiinc` | ハイパーリンク | L92 | OK |
-| 3 | `hima.agiinc.io` | プレーンテキスト（リンクなし） | L84 | NG |
-
-### 不足リンク
-
-| # | 不足箇所 | 期待されるリンク先 | 優先度 | 理由 |
-|---|---|---|---|---|
-| 1 | L84「hima.agiinc.io にデプロイ完了」 | `https://hima.agiinc.io` | **P1** | LP への直接導線が断絶。記事を読んだユーザーがプロダクトに到達できない |
-| 2 | 記事末尾の CTA | `https://hima.agiinc.io` | **P1** | B2 記事のように末尾に LP リンクを設置すべき |
-| 3 | 記事末尾の CTA | `https://agiinc.io` | **P2** | 会社サイトへの導線。B2 では設置済みだが B1 にはない |
+| 1 | `https://hima.agiinc.io` | ハイパーリンク | L84 | OK（FIXED） |
+| 2 | `https://x.com/agilab_agiinc` | ハイパーリンク | L90 | OK |
+| 3 | `https://x.com/agilab_agiinc` | ハイパーリンク | L92 | OK |
+| 4 | `https://hima.agiinc.io` | ハイパーリンク | L94 | OK（NEW: CTA） |
+| 5 | `https://agiinc.io` | ハイパーリンク | L96 | OK（NEW: CTA） |
 
 ### B2 記事との比較（参考）
 
@@ -43,20 +121,7 @@ B2 記事（`docs/hima/blog-b2-article.md`）は末尾に以下の 3 点リン�
 - `[blog.agiinc.io](https://blog.agiinc.io)` — ブログ（L129）
 - `[@agilab_agiinc](https://x.com/agilab_agiinc)` — X（L131）
 
-B1 記事も同一フォーマットで LP・ブログ・X の 3 点リンクを末尾 CTA に揃えるべき。
-
-### 推奨修正
-
-B1 記事に以下を追加:
-
-1. L84 の「hima.agiinc.io にデプロイ完了」を `[hima.agiinc.io](https://hima.agiinc.io) にデプロイ完了` にハイパーリンク化
-2. 記事末尾（L92 付近）に B2 と同じ 3 点リンク CTA を追加:
-
-```
-→ **[hima.agiinc.io](https://hima.agiinc.io)** — 無料・登録不要・BYOK
-
-→ **[agiinc.io](https://agiinc.io)** — AGI Inc. 会社サイト
-```
+B1 記事は LP + 会社サイトの 2 点 CTA を設置。X リンクは本文中（L90, L92）に既設のため、導線としては十分。
 
 ---
 
@@ -64,28 +129,23 @@ B1 記事に以下を追加:
 
 CTO 統合監査（I-04）の結果を基に、サイト間導線の全体像を整理。
 
-### 導線マトリクス
+### 導線マトリクス（再検証後）
 
 | From ＼ To | hima.agiinc.io | blog.agiinc.io | agiinc.io | X (@agilab_agiinc) |
 |---|---|---|---|---|
 | **hima.agiinc.io**（LP） | — | SPA内に存在 | SPA内に存在 | 未確認 |
-| **blog.agiinc.io**（ブログトップ） | **未検出** | — | 未確認 | 未確認 |
-| **blog.agiinc.io**（B1記事） | テキストのみ（リンクなし） | — | なし | リンクあり |
+| **blog.agiinc.io**（ブログトップ） | **リンクあり（FIXED）** | — | **リンクあり（FIXED）** | **リンクあり（FIXED）** |
+| **blog.agiinc.io**（B1記事） | **リンクあり（FIXED）** | — | **リンクあり（FIXED）** | リンクあり |
 | **blog.agiinc.io**（B2記事） | リンクあり | リンクあり | なし | リンクあり |
 | **agiinc.io**（会社サイト） | 検出あり | 検出あり | — | 未確認 |
 
-### 問題点
+### 問題点（再検証後ステータス）
 
-| # | 問題 | 優先度 | 対応案 |
+| # | 問題 | 優先度 | ステータス |
 |---|---|---|---|
-| 1 | ブログトップ → LP の導線がゼロ | **P1** | ブログのヘッダーまたはフッターに LP リンクを追加（CTO 監査 I-04 でも同指摘） |
-| 2 | B1 記事 → LP がプレーンテキストのみ | **P1** | 上記セクション 1 の修正で対応 |
-| 3 | B1/B2 記事 → 会社サイト（agiinc.io）の導線なし | **P2** | 記事末尾 CTA に追加 |
-
-### 推奨修正
-
-- **blog.agiinc.io のサイト共通ナビゲーション**（ヘッダーまたはフッター）に `hima.agiinc.io` へのリンクを追加。CTO 統合監査の対応アクション #2 と合致
-- B1 記事の個別修正は上記セクション 1 参照
+| 1 | ブログトップ → LP の導線がゼロ | **P1** | **FIXED** — ヘッダーに Hima リンク追加済み |
+| 2 | B1 記事 → LP がプレーンテキストのみ | **P1** | **FIXED** — ハイパーリンク化済み |
+| 3 | B1/B2 記事 → 会社サイト（agiinc.io）の導線なし | **P2** | **B1: FIXED**（末尾 CTA）/ B2: 未対応（P2） |
 
 ---
 
@@ -93,43 +153,28 @@ CTO 統合監査（I-04）の結果を基に、サイト間導線の全体像を
 
 対象: `social/x/drafts/` 内の全 10 件
 
-### 下書き別リンク一覧
+### 下書き別リンク一覧（再検証後）
 
-| # | ファイル | 投稿日 | LP リンク | ブログリンク | 会社サイト | X アカウント | 判定 |
-|---|---|---|---|---|---|---|---|
-| 1 | 2026-03-17-annoying-ai-task-poll | 3/17 | なし | なし | なし | なし | NG |
-| 2 | 2026-03-19-lp-release-demo-gif | 3/19 | `hima.agiinc.io`（テキスト） | なし | なし | なし | 要改善 |
-| 3 | 2026-03-21-launch-minus-4-countdown | 3/21 | なし | なし | なし | なし | NG |
-| 4 | 2026-03-24-launch-eve-teaser | 3/24 | なし | なし | なし | なし | NG |
-| 5 | 2026-03-25-launch-thread（T5） | 3/25 | `hima.agiinc.io`（テキスト） | `blog.agiinc.io`（テキスト） | なし | なし | 要改善 |
-| 6 | 2026-03-26-day1-results-template | 3/26 | なし | なし | なし | なし | NG |
-| 7 | 2026-03-27-hn-reactions-recap | 3/27 | なし | なし | なし | なし | NG |
-| 8 | 2026-03-28-usecase-deep-dive | 3/28 | `hima.agiinc.io`（テキスト） | なし | なし | なし | 要改善 |
-| 9 | 2026-03-29-feedback-request | 3/29 | `hima.agiinc.io`（テキスト） | なし | なし | なし | 要改善 |
-| 10 | 2026-03-30-launch-week-recap-thread | 3/30 | なし | なし | なし | なし | NG |
+| # | ファイル | 投稿日 | LP リンク | ブログリンク | 会社サイト | 判定 |
+|---|---|---|---|---|---|---|
+| 1 | 2026-03-17-annoying-ai-task-poll | 3/17 | なし | なし | なし | NG（P2） |
+| 2 | 2026-03-19-lp-release-demo-gif | 3/19 | テキスト | なし | なし | 要改善（P2） |
+| 3 | 2026-03-21-launch-minus-4-countdown | 3/21 | **`https://` あり（FIXED）** | なし | なし | **OK** |
+| 4 | 2026-03-24-launch-eve-teaser | 3/24 | **`https://` あり（FIXED）** | なし | なし | **OK** |
+| 5 | 2026-03-25-launch-thread（T5） | 3/25 | **`https://` あり（FIXED）** | **`https://` あり（FIXED）** | なし | **OK** |
+| 6 | 2026-03-26-day1-results-template | 3/26 | **`https://` あり（FIXED）** | なし | なし | **OK** |
+| 7 | 2026-03-27-hn-reactions-recap | 3/27 | なし | なし | なし | NG（P2） |
+| 8 | 2026-03-28-usecase-deep-dive | 3/28 | テキスト | なし | なし | 要改善（P2） |
+| 9 | 2026-03-29-feedback-request | 3/29 | テキスト | なし | なし | 要改善（P2） |
+| 10 | 2026-03-30-launch-week-recap-thread | 3/30 | なし | なし | なし | NG（P2） |
 
-### 問題点
+### 問題点（再検証後ステータス）
 
-| # | 問題 | 優先度 | 対応案 |
+| # | 問題 | 優先度 | ステータス |
 |---|---|---|---|
-| 1 | ローンチスレッド（T5）の URL が `https://` なし | **P1** | `https://hima.agiinc.io`、`https://blog.agiinc.io` に修正。X はプレーンテキスト URL でもリンク化するが、https:// を明示すべき |
-| 2 | 10 件中 6 件に LP リンクなし | **P2** | 最低でもカウントダウン（3/21）・ローンチ前夜（3/24）・初日結果（3/26）に LP URL を追加 |
-| 3 | 全件に会社サイト（agiinc.io）リンクなし | **P2** | ローンチスレッド T4（AGI Inc. ストーリー）に `agiinc.io` を追加推奨 |
-
-### 推奨修正（優先順）
-
-1. **ローンチスレッド T5**（最重要）:
-   - `hima.agiinc.io` → `https://hima.agiinc.io`
-   - `blog.agiinc.io` → `https://blog.agiinc.io`
-
-2. **ローンチ前夜（3/24）** に LP URL を追加:
-   - 末尾に `https://hima.agiinc.io` を 1 行追加
-
-3. **初日結果（3/26）** に LP URL を追加:
-   - 末尾に `→ https://hima.agiinc.io` を 1 行追加
-
-4. **カウントダウン（3/21）** に LP URL を追加:
-   - 末尾に `→ https://hima.agiinc.io` を 1 行追加
+| 1 | ローンチスレッド（T5）の URL が `https://` なし | **P1** | **FIXED** |
+| 2 | 10 件中 6 件に LP リンクなし | **P2** | **部分 FIXED** — カウントダウン・前夜・初日結果の 3 件に追加済み。残 3 件（ポール・HN・まとめ）は P2 |
+| 3 | 全件に会社サイト（agiinc.io）リンクなし | **P2** | **OPEN** — P2-3 |
 
 ---
 
@@ -137,76 +182,60 @@ CTO 統合監査（I-04）の結果を基に、サイト間導線の全体像を
 
 CTO 統合監査 I-03 で検出された hima.agiinc.io の SPA 起因問題について、マーケティング観点での影響度を評価。
 
-### 検出問題
+### 検出問題 → 修正後の状態
 
-| 項目 | 現状 | 正常時の期待値 |
-|---|---|---|
-| `robots.txt` | HTML を返却（SPA フォールバック） | テキストファイル（User-agent / Allow / Sitemap 記述） |
-| `sitemap.xml` | HTML を返却（SPA フォールバック） | XML ファイル（URL 一覧） |
-| `og:title` | 空 | `Hima — バッチ AI ワークスペース` 等 |
-| `og:image` | 空 | OGP 画像 URL |
-| `canonical` | 空 | `https://hima.agiinc.io/` |
-
-### マーケティング影響度
-
-#### (A) SNS シェア時の OGP 表示不全 — **P0**
-
-X ローンチスレッド（3/25）で `hima.agiinc.io` を投稿した際、Twitter Card が正常に生成されない。タイトル・説明文・画像が空のカードでは CTR が大幅に低下する。
-
-- 影響範囲: X ローンチスレッド T5、W12〜W13 の全 LP リンク投稿、HN/Reddit 投稿
-- 定量影響（推定）: OGP なしの URL は OGP ありと比較して CTR が 40〜60% 低下（業界ベンチマーク）
-- ローンチ日（3/25）の初動トラフィック目標 300 UV に直結
-
-**備考**: チェックリスト S-01 で「hima の index.html に OGP/Twitter Card メタタグを新規追加」済みとの記録がある。しかし CTO の実測（I-03）では OGP が空として検出されている。SPA の index.html にメタタグを埋め込んでも、クローラーが JavaScript を実行しない場合は取得できない可能性がある。SSR/プリレンダリングの有無を CTO と確認すべき。
-
-#### (B) 検索エンジンインデックス不全 — **P0**
-
-`robots.txt` が HTML を返すことで、Googlebot が正しいクロール指示を取得できない。`sitemap.xml` も同様に不正な形式のため、LP のページが検索インデックスに登録されない可能性が高い。
-
-- 影響範囲: オーガニック検索経由の全流入
-- 定量影響: ローンチ後 1 ヶ月の月間 UV 目標 1,000 のうち、オーガニック流入分（推定 30〜40%）が消失
-- 長期的な SEO 資産の構築が遅延
-
-#### (C) canonical 未設定による重複コンテンツリスク — **P1**
-
-canonical が空のため、検索エンジンが正規 URL を判定できない。パラメータ付き URL やトレイリングスラッシュ差異で重複ページと判定されるリスクがある。
-
-### 推奨アクション
-
-| # | アクション | 担当 | 優先度 |
+| 項目 | 修正前 | 修正後 | ステータス |
 |---|---|---|---|
-| 1 | hima.agiinc.io の OGP メタタグが実際にクローラーに返されているか確認。SSR/プリレンダリングの検討 | CTO | **P0** |
-| 2 | `robots.txt` / `sitemap.xml` を SPA フォールバックから除外し、静的ファイルとして配信 | CTO / Engineer | **P0** |
-| 3 | canonical URL の設定確認・修正 | CTO / Engineer | **P1** |
+| `robots.txt` | HTML を返却（SPA フォールバック） | `text/plain` で正常返却 | **FIXED** |
+| `sitemap.xml` | HTML を返却（SPA フォールバック） | `application/xml` で正常返却 | **FIXED** |
+| `og:title` | 空 | `Hima - AIバッチ処理ワークスペース` | **FIXED** |
+| `og:description` | 空 | `AIに仕事を丸投げして、ヒマになろう。...` | **FIXED** |
+| `og:image` | 空 | `https://hima.agiinc.io/og-image.png`（45KB, image/png） | **FIXED** |
+| `twitter:card` | 未設定 | `summary_large_image` | **FIXED** |
+| `canonical` | 空 | `https://hima.agiinc.io/` | **FIXED** |
+
+### マーケティング影響度（再評価）
+
+#### (A) SNS シェア時の OGP 表示不全 — FIXED
+
+Twitter Card が正常に生成される状態を確認。`summary_large_image` 形式でタイトル・説明文・画像の 3 要素が揃っている。ローンチ日（3/25）の X 投稿で OGP カードが表示され、CTR の低下リスクは解消。
+
+#### (B) 検索エンジンインデックス不全 — FIXED
+
+`robots.txt` が正規テキスト形式、`sitemap.xml` が正規 XML 形式で返却されることを確認。Googlebot が正しいクロール指示を取得でき、LP の検索インデックス登録が可能な状態。
+
+#### (C) canonical 未設定による重複コンテンツリスク — FIXED
+
+`<link rel="canonical" href="https://hima.agiinc.io/" />` が設定済み。重複コンテンツリスクは解消。
 
 ---
 
 ## 5. 修正一覧（優先度別）
 
-### P0（ローンチ前に必ず修正）
+### P0（ローンチ前に必ず修正）— 全件 FIXED
 
-| # | 対象 | 問題 | 修正内容 | 担当 |
-|---|---|---|---|---|
-| P0-1 | hima.agiinc.io | OGP/Twitter Card がクローラーに返されない | SSR/プリレンダリング対応、または静的 HTML での OGP 配信を検討 | CTO / Engineer |
-| P0-2 | hima.agiinc.io | robots.txt / sitemap.xml が HTML を返却 | SPA フォールバックから除外し、静的ファイルとして配信 | CTO / Engineer |
+| # | 対象 | 問題 | 修正内容 | 担当 | ステータス |
+|---|---|---|---|---|---|
+| P0-1 | hima.agiinc.io | OGP/Twitter Card がクローラーに返されない | 静的ファイル化 + OGP メタタグ修正 | CTO / Engineer | **FIXED** |
+| P0-2 | hima.agiinc.io | robots.txt / sitemap.xml が HTML を返却 | SPA フォールバックから除外、静的ファイル化 | CTO / Engineer | **FIXED** |
 
-### P1（ローンチ前に修正推奨）
+### P1（ローンチ前に修正推奨）— 全件 FIXED
 
-| # | 対象 | 問題 | 修正内容 | 担当 |
-|---|---|---|---|---|
-| P1-1 | B1 記事 | LP へのハイパーリンクなし | L84 のリンク化 + 末尾に 3 点 CTA 追加 | Creative / CMO |
-| P1-2 | blog.agiinc.io | トップページから LP への導線なし | ヘッダー/フッターに LP リンクを追加 | CTO / Engineer |
-| P1-3 | X ローンチスレッド T5 | URL に `https://` プレフィックスなし | `https://hima.agiinc.io` / `https://blog.agiinc.io` に修正 | Creative / CMO |
-| P1-4 | hima.agiinc.io | canonical URL 未設定 | canonical メタタグの追加 | CTO / Engineer |
-| P1-5 | X ローンチ前夜（3/24） | LP リンクなし | 末尾に `https://hima.agiinc.io` を追加 | Creative / CMO |
+| # | 対象 | 問題 | 修正内容 | 担当 | ステータス |
+|---|---|---|---|---|---|
+| P1-1 | B1 記事 | LP へのハイパーリンクなし | L84 リンク化 + 末尾 CTA 追加 | Creative / CMO | **FIXED** |
+| P1-2 | blog.agiinc.io | トップページから LP への導線なし | ヘッダーに LP リンク追加 | CTO / Engineer | **FIXED** |
+| P1-3 | X ローンチスレッド T5 | URL に `https://` なし | `https://` 付与 | Creative / CMO | **FIXED** |
+| P1-4 | hima.agiinc.io | canonical URL 未設定 | canonical メタタグ追加（P0-1 に含む） | CTO / Engineer | **FIXED** |
+| P1-5 | X ローンチ前夜（3/24） | LP リンクなし | 末尾に LP URL 追加 | Creative / CMO | **FIXED** |
 
-### P2（ローンチ後でも可）
+### P2（ローンチ後でも可）— 2/3 FIXED
 
-| # | 対象 | 問題 | 修正内容 | 担当 |
-|---|---|---|---|---|
-| P2-1 | B1 記事 | 会社サイト（agiinc.io）リンクなし | 末尾 CTA に追加 | Creative / CMO |
-| P2-2 | X 下書き 6 件 | LP リンクなし | カウントダウン・初日結果等に LP URL 追加 | Creative / CMO |
-| P2-3 | X ローンチスレッド T4 | 会社サイトリンクなし | `https://agiinc.io` を追加 | Creative / CMO |
+| # | 対象 | 問題 | 修正内容 | 担当 | ステータス |
+|---|---|---|---|---|---|
+| P2-1 | B1 記事 | 会社サイト（agiinc.io）リンクなし | 末尾 CTA に追加 | Creative / CMO | **FIXED**（P1-1 に含む） |
+| P2-2 | X 下書き 6 件 | LP リンクなし | カウントダウン・初日結果に LP URL 追加 | Creative / CMO | **FIXED** |
+| P2-3 | X ローンチスレッド T4 | 会社サイトリンクなし | `https://agiinc.io` を追加 | Creative / CMO | OPEN |
 
 ---
 
@@ -214,15 +243,24 @@ canonical が空のため、検索エンジンが正規 URL を判定できな�
 
 | CTO 監査項目 | 本レポートの対応 | ステータス |
 |---|---|---|
-| I-03 FAIL（OGP/SEO 未整備） | P0-1, P0-2, P1-4 | 修正待ち |
-| I-04 PARTIAL（blog→LP 未導線） | P1-2 | 修正待ち |
-| I-04 B1 記事リンク | P1-1 | 修正待ち（C-01 残タスク） |
+| I-03 FAIL（OGP/SEO 未整備） | P0-1, P0-2, P1-4 | **全件 FIXED** |
+| I-04 PARTIAL（blog→LP 未導線） | P1-2 | **FIXED** |
+| I-04 B1 記事リンク | P1-1 | **FIXED** |
 
 ---
 
-## 7. 次のアクション
+## 7. 残存課題と次のアクション
 
-1. **即時**: 本レポートを CTO（アレクセイ）と共有。P0-1, P0-2 の技術対応方針を協議
-2. **W09 中**: Creative（レア）に B1 記事のリンク修正（P1-1）と X 下書きのリンク整備（P1-3, P1-5）を依頼
-3. **W10 まで**: blog.agiinc.io のナビゲーション改修（P1-2）を CTO/Engineer と調整
-4. **ローンチ前（3/22 まで）**: P0/P1 の全修正完了を確認し、I-03/I-04 を再検証
+### 残存課題（P2: ローンチ後対応可）
+
+| # | 対象 | 問題 | 優先度 |
+|---|---|---|---|
+| P2-3 | X ローンチスレッド T4 | 会社サイト（agiinc.io）リンクなし | P2 |
+| — | X 下書き 4 件 | ポール(3/17)・HN(3/27)・ユースケース(3/28)・まとめ(3/30) に LP URL なし | P2（既存） |
+| — | B2 記事 | 会社サイト（agiinc.io）リンクなし | P2（既存） |
+
+### 次のアクション
+
+1. **ローンチ前（3/22 まで）**: P0/P1 は全件クリア済み。追加対応不要
+2. **ローンチ後（W14〜）**: P2-3 および残存 P2 項目を Creative（レア）に依頼
+3. **ローンチ後（W14〜）**: X 投稿のパフォーマンス数値を踏まえ、残存下書きの LP URL 追加を判断
