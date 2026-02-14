@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface PostFrontmatter {
+  layout: string;
+  title: string;
+  date: string;
+  draft?: boolean;
+  description?: string;
+  tags?: string[];
+}
+
+const postFiles = import.meta.glob<{ frontmatter: PostFrontmatter; url: string }>('./posts/*.md', {
+  eager: true,
+});
+const visiblePosts = Object.values(postFiles).filter((post) => !post.frontmatter.draft);
+const sorted = visiblePosts.sort((a, b) => {
+  return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+});
+---
+
+<Layout title="AGI Inc. Blog">
+  <h1 class="page-title">記事一覧</h1>
+  <div class="post-list">
+    {
+      sorted.map((post) => {
+        const date = new Date(post.frontmatter.date);
+        const formatted = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+        return (
+          <a href={post.url} class="post-item">
+            <time class="post-date" datetime={post.frontmatter.date}>
+              {formatted}
+            </time>
+            <h2 class="post-title">{post.frontmatter.title}</h2>
+            {post.frontmatter.description && (
+              <p class="post-desc">{post.frontmatter.description}</p>
+            )}
+          </a>
+        );
+      })
+    }
+  </div>
+</Layout>
+
+<style>
+  .page-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3a8c;
+    margin-bottom: 40px;
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .post-item {
+    display: block;
+    padding: 24px;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+
+  .post-item:hover {
+    border-color: #2d3a8c;
+  }
+
+  .post-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    color: #999;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .post-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .post-desc {
+    font-size: 0.875rem;
+    color: #666;
+    line-height: 1.7;
+  }
+</style>
