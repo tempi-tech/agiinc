@@ -14,7 +14,7 @@
 | プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。パフォーマンステスト 3 件 + P-01 疎通確認が残 |
 | インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。I-01〜I-04 は全サービスデプロイ済み、正式検証は 3/22 予定 |
 | SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
-| コンテンツ（C-01〜C-04） | 0/4 | 4 | 全原稿完成・CMO レビュー済み。画像素材・投稿予約・公開予約が残 |
+| コンテンツ（C-01〜C-04） | 0/4 | 4 | 全原稿 APPROVE 済み・デモアセット仕様 APPROVE 済み・公開ロードマップ策定完了。画像素材制作・投稿予約・公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
 
 ---
@@ -120,13 +120,15 @@
 
 **進捗詳細**:
 
-- **C-01**: B4 記事本文は CMO レビュー APPROVE 済み（`content-review-final.md`）。残: B1 記事リンクのスラッグ付き URL 差し替え、blog.agiinc.io フロントマター動作確認、公開予約設定
-- **C-02**: ローンチスレッド 5 ツイート（T1-T5）は CMO レビュー APPROVE 済み。残: デモ GIF アセット制作（Creative）、画像素材準備、投稿予約設定
-- **C-03**: 最終稿が `social/hn/2026-03-25-show-hn.md` に存在。英語テキスト完成。残: CMO との最終確認
-- **C-04**: 最終稿が `social/reddit/2026-03-26-launch.md` に存在。r/artificial + r/ChatGPT の 2 版を用意済み。残: CMO との最終確認
+- **C-01**: B4 記事本文は CMO レビュー APPROVE 済み（`content-review-final.md`）。公開ロードマップ策定完了（`content-publishing-roadmap.md`）。残作業 8 ステップ: B1 リンクのスラッグ付き URL 差し替え → フロントマター動作確認（CTO） → blog リポジトリ配置 → ステージングプレビュー → 公開予約設定（3/25 11:00 JST）
+- **C-02**: ローンチスレッド 5 ツイート（T1-T5）は CMO レビュー APPROVE 済み。公開ロードマップ策定完了。残作業 12 ステップ: UI キャプチャ確認（3/12）→ デモ GIF 1-B 制作（3/14 納品）→ 図解画像 + BYOK 画像制作（3/21 納品）→ アセットレビュー → 投稿予約入稿 → プレビュー確認
+- **C-03**: 最終稿が `social/hn/2026-03-25-show-hn.md` に存在。英語テキスト完成。公開ロードマップ策定完了。残作業 8 ステップ: 英語校正最終レビュー → HN アカウント確認 → 最終確定 → 3/26 02:00 JST 手動投稿
+- **C-04**: 最終稿が `social/reddit/2026-03-26-launch.md` に存在。r/artificial + r/ChatGPT の 2 版を用意済み。公開ロードマップ策定完了。残作業 8 ステップ: 最終校正 → subreddit ルール確認 → アカウント確認 → 3/26 朝 JST 手動投稿
 
-<!-- デモアセット仕様書: CMO CONDITIONAL APPROVE → v2 3点修正完了、正式APPROVE待ち -->
-**関連進捗 — デモアセット仕様書**: CMO レビューで CONDITIONAL APPROVE（`docs/hima/content-review-demo-assets.md` 相当）を受け、Creative が 3 点修正を実施し v2 を完成（`docs/hima/demo-assets-spec.md`）。修正内容: 納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加。正式 APPROVE 待ち。C-02 のデモ GIF 制作に直結するため、早期 APPROVE が必要。
+**公開ロードマップ**: `docs/hima/content-publishing-roadmap.md` に C-01〜C-04 の全残作業ステップ、3 日間タイムライン（3/24 準備日 + 3/25 ローンチ日 + 3/26 翌日フォロー）、デモ GIF・画像素材の納品スケジュール、リスク対策 5 件、担当者別タスクサマリーを定義済み。
+
+<!-- デモアセット仕様書: CMO APPROVE済み（v2） -->
+**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。デモ GIF 制作準備完了（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）。
 
 <!-- B2記事: CMO CONDITIONAL APPROVE、Creative修正待ち -->
 **関連進捗 — B2 記事**: B2 ブログ記事「AIのコピペ地獄を終わらせる — Himaの設計思想」（`docs/hima/blog-b2-article.md`）が CMO レビューで CONDITIONAL APPROVE（`docs/hima/content-review-b2.md`）。Creative による修正待ち。B2 はローンチ前公開予定の設計思想記事で、B4（使い方ガイド）との棲み分けが確認済み。
