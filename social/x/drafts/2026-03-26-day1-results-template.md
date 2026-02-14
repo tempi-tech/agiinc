@@ -23,6 +23,8 @@ Hima、ローンチ初日の数字。
 
 良いも悪いも全部出す。これがビルドインパブリック。
 
+→ https://hima.agiinc.io
+
 #BuildInPublic #AI
 
 ## テンプレート変数

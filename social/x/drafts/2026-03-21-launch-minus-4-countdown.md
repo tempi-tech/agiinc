@@ -23,6 +23,8 @@ Hima は、AI の繰り返し作業をまとめて処理する
 ここまで全部、公開で作ってきました。
 最後まで見届けてください。
 
+→ https://hima.agiinc.io
+
 #BuildInPublic
 
 ## 投稿メモ

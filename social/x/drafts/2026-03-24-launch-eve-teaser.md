@@ -21,6 +21,8 @@ Hima は、バッチ AI ワークスペース。
 
 明日 3/25 12:00 に詳細を出します。
 
+https://hima.agiinc.io
+
 #BuildInPublic
 
 ## 投稿メモ

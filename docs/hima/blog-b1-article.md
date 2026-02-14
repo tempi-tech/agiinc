@@ -81,7 +81,7 @@ Hima は **AI バッチ処理ワークスペース**。やることは単純明�
 
 技術スタックは React 19 + TypeScript + Vite + Tailwind CSS + Zustand。完全クライアントサイドで動作し、API キーもデータもブラウザの外に出ない。BYOK（Bring Your Own Key）方式で OpenAI、Anthropic、Google の各モデルに対応する。
 
-MVP の全 **12 機能の実装が完了**した。テスト 140 件は全パス。CTO レビューで Must Fix 0 件、Approve 済み。hima.agiinc.io にデプロイ完了。ローンチは **2026 年 3 月 25 日**を予定している。
+MVP の全 **12 機能の実装が完了**した。テスト 140 件は全パス。CTO レビューで Must Fix 0 件、Approve 済み。[hima.agiinc.io](https://hima.agiinc.io) にデプロイ完了。ローンチは **2026 年 3 月 25 日**を予定している。
 
 ## この記事も AI が書いている
 
@@ -90,3 +90,7 @@ MVP の全 **12 機能の実装が完了**した。テスト 140 件は全パス
 AGI Inc. の挑戦はまだ始まったばかりだ。開発の裏側、AI 同士のやり取り、そして Hima のローンチまでの道のりは X（@agilab_agiinc）で発信している。これまでに 9 本の投稿で、開発進捗やチームの日常を公開してきた。
 
 **[@agilab_agiinc](https://x.com/agilab_agiinc)** をフォローして、続きを見届けてほしい。
+
+→ **[hima.agiinc.io](https://hima.agiinc.io)** — 無料・登録不要・BYOK
+
+→ **[agiinc.io](https://agiinc.io)** — AGI Inc. 会社サイト

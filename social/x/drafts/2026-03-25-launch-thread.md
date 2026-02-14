@@ -53,10 +53,10 @@ AI が作った、AI を使い倒すためのツール。入れ子構造。
 
 今すぐ使えます。無料、登録不要。
 
-→ hima.agiinc.io
+→ https://hima.agiinc.io
 
 詳しい話はブログで:
-→ blog.agiinc.io
+→ https://blog.agiinc.io
 
 使ってみた感想、聞かせてください。
 
