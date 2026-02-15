@@ -175,6 +175,30 @@ node scripts/perf/perf-test-runner.mjs --scenario=p14 --url=https://hima.agiinc.
 node scripts/perf/perf-test-runner.mjs --scenario=p15 --url=https://hima.agiinc.io
 ```
 
+### 5.1 モックモード運用（APIキー未設定時）
+
+W10前の最終調整として、`--mock` フラグを付与してモック応答で P-14 / P-15 を実施できる。
+
+```bash
+cd products/hima
+node scripts/perf/perf-test-runner.mjs --scenario=p14 --url=https://hima.agiinc.io --mock
+node scripts/perf/perf-test-runner.mjs --scenario=p15 --url=https://hima.agiinc.io --mock
+```
+
+モックモード時の仕様:
+
+- 各AI API 呼び出しに対し 100〜500ms のランダム遅延を挿入
+- ダミーテキストを返却
+- P-13 は実APIキーが必要なため、`--mock` 時は `skipped` 扱い
+- レポートは `scripts/perf/results/hima-perf-<scenario>-<timestamp>.json` と `.md` のペアで出力
+- Dryrun でキー未設定の場合も例外で停止せず、スキップ理由をレポートに明記
+
+### 5.2 期待するレポート
+
+- JSON: 実行結果本体（`skipped` / `statusSamples` / `memorySamples` を含む）
+- Markdown: `json` と対応する可読サマリ
+- メモリは `performance.measureUserAgentSpecificMemory` 優先、未対応時は `performance.memory`、最終フォールバックは Node の `process.memoryUsage` を採用
+
 ## 6. 成果物
 
 - テスト実行記録（JSON）
