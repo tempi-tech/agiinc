@@ -91,3 +91,30 @@
 ## 6. 結論
 
 本制作移行を **承認** する。2-1（Brand 型統合）と 2-2（データ統合）は本制作の初期段階で対処すること。2-4（package.json スクリプト追加）は即座に対処可能。
+
+## 2026-02-15: 軽微指摘3件 対応ログ
+
+### 1) 型統合
+- 実施: `HimaWorkspace` の型定義を共通化。
+- 追加: `products/hima/demo-video/src/types.ts`
+- 適用: `SceneRecipe.tsx`, `SceneCsvImport.tsx`, `SceneBatchExec.tsx`, `SceneExport.tsx`, `SceneOverviewX.tsx`, `SceneRecipeX.tsx`, `SceneCsvImportX.tsx`, `SceneBatchExecX.tsx`, `SceneExportX.tsx`, `components/HimaWorkspace.tsx`
+- 効果: `Brand` と `HimaWorkspace` props の重複定義を排除。
+
+### 2) データ参照の集約
+- 実施: `demo-data.csv` 参照文字列を定数化。
+- 追加: `products/hima/demo-video/src/constants.ts`
+  - `DEMO_DATA_FILE_NAME`
+  - `DEMO_DATA_PATH`
+- 適用: `components/HimaWorkspace.tsx`
+- 効果: CSV 表示文言が 1 箇所で管理される。
+
+### 3) CLI スクリプト追加
+- 追加: `products/hima/demo-video/render.sh`
+- 追加スクリプト: `npm run render`（1-A）、`npm run render:x`（1-B）、`npm run render:all`
+- `render.sh` で 1-A/1-B を順次実行。
+
+### W12 検証準備（レンダリング確認）
+- `./render.sh` 実行（`products/hima/demo-video`）
+  - `demo-lp` 成功: `output/demo-lp-full.webm`
+  - `demo-x` 成功: `output/demo-x-full.webm`
+- 結果: 回帰チェック PASS
