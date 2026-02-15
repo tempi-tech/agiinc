@@ -51,6 +51,9 @@
 | P-15 | メモリ使用確認 | 大量行（100〜300 件）でブラウザクラッシュなし | Engineer | 3/21 | [ ] |
 
 **残アクション**: P-13〜P-15 は実 API キー + 実ブラウザ環境が必要。テスト計画書 `docs/hima/perf-test-plan.md`（手順・環境・合否基準・ボトルネック分析）および自動計測スクリプト `products/hima/scripts/perf/perf-test-runner.mjs`（Puppeteer ベース、100〜300 件バッチ実行＋メモリ/FPS 計測）を作成済み。**2026-02-15 時点: Playwright 依存を worker に追加済み**（`pnpm add -D playwright`）。W10 パフォーマンステスト実行環境の前提条件の一つが解消。W10 にてデプロイ済み環境（hima.agiinc.io）で実測を実施すること。
+**Session14〜17反映**: mock ドライラン（P-13スキップ / P-14 PASS / P-15 PASS）を完了。W10 本番実行計画は `docs/hima/perf-test-w10-execution-plan.md` で確定済み。
+
+**関連完了**: Remotion 1-A v2 が CTO APPROVE、Remotion 1-B v1 が CMO APPROVE で、デモ素材の進捗に関する依存条件は満たしている。
 
 ### 1-3. エラーハンドリング
 
@@ -77,7 +80,9 @@
 | I-04 | `blog.agiinc.io` 稼働確認 | B1/B4 記事表示、OGP 生成、リンク有効 | CTO / CMO | 3/22 | [ ] |
 | I-05 | 監視と緊急時手順 | ローンチ当日の障害一次対応フローを文書化 | CTO | 3/23 | [x] |
 
-**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。**api-hima CORS Origin P1 課題**: commit `68382ea` を本番再デプロイし、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` の curl 結果（許可 Origin CORS + 不許可 Origin 非付与 + OPTIONS）で再検証 PASS。正式検証チェックシート `docs/hima/infra-verification-checklist.md` は引き続き活用。
+**Session14成果（2026-02-15）**: I-02（api-hima CORS再デプロイ検証）は PASS。commit `68382ea` を本番反映し、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` で許可 Origin CORS / 非許可 Origin 非付与 / OPTIONS を確認済み。
+
+**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。正式検証チェックシート `docs/hima/infra-verification-checklist.md` は引き続き活用。 
 
 **I-05 完了根拠**: `docs/hima/incident-response-plan.md` にて障害分類（P0/P1/P2）、4 サービスの監視方法、一次対応手順、エスカレーション体制、ロールバック手順、当日障害対応チェックリストを文書化済み。CTO 作成（2026-02-14）。
 
