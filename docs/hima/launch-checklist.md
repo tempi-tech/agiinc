@@ -12,7 +12,7 @@
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
 | プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。P-13〜P-15 テスト計画+スクリプト準備完了（**Playwright 追加済み**）、P-01 疎通確認手順書作成済み。残は実環境での実施のみ |
-| インフラ（I-01〜I-05） | 1/5 | 4 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS。**api-hima CORS Origin P1 — Engineer 修正完了 + CTO Approve**（再デプロイ＋再検証が次ステップ）。正式検証チェックシート作成済み（3/22 検証予定） |
+| インフラ（I-01〜I-05） | 2/5 | 3 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS。**api-hima CORS Origin P1** は `68382ea` を本番再デプロイ済み（Worker Version `7bcb2666-2072-4101-a74e-eecc7552a403`）し、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` にて許可 Origin CORS/不許可 Origin 非付与/OPTIONS を本番検証 PASS。正式検証チェックシートは 2026-03-22 予定。 |
 | SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
 | コンテンツ（C-01〜C-04） | 0/4 | 4 | C-01 B4記事 blog デプロイ済み（draft: true）。C-03/C-04 英語校正完了 APPROVE。C-02 は画像素材待ち。公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
@@ -72,12 +72,12 @@
 | ID | チェック項目 | 完了条件 | 担当 | 期限 | 状態 |
 |---|---|---|---|---|---|
 | I-01 | `hima.agiinc.io` 稼働確認 | HTTPS 正常、トップ表示、主要導線動作 | CTO / Engineer | 3/22 | [ ] |
-| I-02 | `api-hima.agiinc.io` 稼働確認 | Worker 応答 OK、許可 Origin 制御 OK、3 プロバイダ転送 OK | CTO / Engineer | 3/22 | [ ] |
+| I-02 | `api-hima.agiinc.io` 稼働確認 | Worker 応答 OK、許可 Origin 制御 OK、3 プロバイダ転送 OK | CTO / Engineer | 3/22 | [x] |
 | I-03 | `agiinc.io` 稼働確認 | 会社サイト表示、導線リンク有効 | CTO / CMO | 3/22 | [ ] |
 | I-04 | `blog.agiinc.io` 稼働確認 | B1/B4 記事表示、OGP 生成、リンク有効 | CTO / CMO | 3/22 | [ ] |
 | I-05 | 監視と緊急時手順 | ローンチ当日の障害一次対応フローを文書化 | CTO | 3/23 | [x] |
 
-**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。**api-hima CORS Origin 制御 P1 課題 → 修正完了**: 許可外 Origin への CORS ヘッダ不付与に修正済み（環境変数ベースの複数 Origin 対応）。Engineer 修正（commit 68382ea, agiinc-hima）+ **CTO コードレビュー Approve**（commit 97bebd6）。**次ステップ: 再デプロイ＋curl 再検証**（W09 序盤で実施予定）。正式検証チェックシート `docs/hima/infra-verification-checklist.md` を作成済み（4 サービス別の検証手順・期待結果・合否基準・所要時間見積もり・Go/No-Go 判定連携を定義）。W12 にてチェックシートに沿った正式検証を実施予定。
+**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。**api-hima CORS Origin P1 課題**: commit `68382ea` を本番再デプロイし、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` の curl 結果（許可 Origin CORS + 不許可 Origin 非付与 + OPTIONS）で再検証 PASS。正式検証チェックシート `docs/hima/infra-verification-checklist.md` は引き続き活用。
 
 **I-05 完了根拠**: `docs/hima/incident-response-plan.md` にて障害分類（P0/P1/P2）、4 サービスの監視方法、一次対応手順、エスカレーション体制、ロールバック手順、当日障害対応チェックリストを文書化済み。CTO 作成（2026-02-14）。
 
