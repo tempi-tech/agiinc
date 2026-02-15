@@ -1,6 +1,6 @@
 # Hima ローンチ準備チェックリスト（2026-03-25）
 
-> PdM パク・ミンジュン | 2026-02-15 更新 | ステータス: 実行管理版（ローンチ準備）
+> PdM パク・ミンジュン | 2026-02-16 更新 | ステータス: 実行管理版（ローンチ準備）
 
 ## 概要
 
@@ -12,7 +12,7 @@
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
 | プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。P-13〜P-15 テスト計画+スクリプト準備完了（**Playwright 追加済み**）、P-01 疎通確認手順書作成済み。残は実環境での実施のみ |
-| インフラ（I-01〜I-05） | 2/5 | 3 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS。**api-hima CORS Origin P1** は `68382ea` を本番再デプロイ済み（Worker Version `7bcb2666-2072-4101-a74e-eecc7552a403`）し、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` にて許可 Origin CORS/不許可 Origin 非付与/OPTIONS を本番検証 PASS。正式検証チェックシートは 2026-03-22 予定。 |
+| インフラ（I-01〜I-05） | 2/5 | 3 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS。**api-hima CORS Origin P1** は `68382ea` を本番再デプロイ済み（Worker Version `7bcb2666-2072-4101-a74e-eecc7552a403`）し、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` にて許可 Origin CORS/不許可 Origin 非付与/OPTIONS を本番検証 PASS。CTO 回帰検証を含む稼働確認の事前条件を `docs/hima/infra-formal-verification-w12.md` へ統合。 |
 | SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
 | コンテンツ（C-01〜C-04） | 0/4 | 4 | C-01 B4記事 blog デプロイ済み（draft: true）。C-03/C-04 英語校正完了 APPROVE。C-02 は画像素材待ち。公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
@@ -71,6 +71,7 @@
 ## 2. インフラ（ドメイン・配信・API）
 
 > 全 4 サービス（hima / api-hima / agiinc.io / blog）はデプロイ済み。正式な稼働確認は 3/22 に実施予定。
+> I-01〜I-04 正式検証チェックシートは 2026-02-16 に `docs/hima/infra-formal-verification-w12.md` で完成。
 
 | ID | チェック項目 | 完了条件 | 担当 | 期限 | 状態 |
 |---|---|---|---|---|---|
@@ -82,7 +83,7 @@
 
 **Session14成果（2026-02-15）**: I-02（api-hima CORS再デプロイ検証）は PASS。commit `68382ea` を本番反映し、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` で許可 Origin CORS / 非許可 Origin 非付与 / OPTIONS を確認済み。
 
-**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。正式検証チェックシート `docs/hima/infra-verification-checklist.md` は引き続き活用。 
+**I-01〜I-04 残アクション**: デプロイは完了済み。CTO サイトレビュー Must Fix 3 件（M1: OGP メタタグ、M2: canonical URL、M3: sitemap/robots.txt）は修正完了。HSTS/CSP セキュリティヘッダ全 4 サービス実装・デプロイ完了。CTO 回帰検証（`docs/hima/post-deploy-regression-2026-02-14-session-5-10.md`）にて hima/agiinc/blog は全項目 PASS 確認済み。正式検証は `docs/hima/infra-formal-verification-w12.md` を基準に 3/22 本番検証へ移行。 
 
 **I-05 完了根拠**: `docs/hima/incident-response-plan.md` にて障害分類（P0/P1/P2）、4 サービスの監視方法、一次対応手順、エスカレーション体制、ロールバック手順、当日障害対応チェックリストを文書化済み。CTO 作成（2026-02-14）。
 
