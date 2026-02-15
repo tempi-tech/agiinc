@@ -173,21 +173,82 @@ node scripts/perf/perf-test-runner.mjs \
 
 ### 6.1 修正済みバグ（3件）
 
-| # | 内容 | 影響 |
-|---|------|------|
-| Bug-1 | `.first` → `.first()` Playwright メソッド修正（2箇所） | セレクタ操作の全シナリオに影響 |
-| Bug-2 | `querySelectorAll('div')` → `querySelectorAll('span')` 件数表示セレクタ | バッチ入力の件数確認に影響 |
-| Bug-3 | `readRowsExpected` の冗長な呼び出し削除（3箇所） | バッチ実行前のタイムアウト防止 |
+| # | 内容 | 影響 | 確認方法 |
+|---|------|------|---------|
+| Bug-1 | `.first` → `.first()` Playwright メソッド修正（2箇所: L288, L531） | セレクタ操作の全シナリオに影響 | `grep -n '\.first()' perf-test-runner.mjs` で2箇所確認 |
+| Bug-2 | `querySelectorAll('div')` → `querySelectorAll('span')` 件数表示セレクタ（L302） | バッチ入力の件数確認に影響 | `grep -n "querySelectorAll('span')" perf-test-runner.mjs` で確認 |
+| Bug-3 | `readRowsExpected` の冗長な呼び出し削除（3箇所） | バッチ実行前のタイムアウト防止 | 関数定義は残存（L372）、`runP13`/`runP14`/`runP15` 内に呼び出しがないことを確認 |
 
-3件修正済みのため、本番実行でこれらの問題は再発しない。
+3件修正済み。02-16 回帰テストで修正維持を確認済み（P-14 PASS / P-15 PASS）。
 
-### 6.2 本番実行時の注意点
+### 6.2 実行環境の前提条件チェック手順
+
+本番実行前に以下のコマンドで環境を検証する:
+
+```bash
+# 1. スクリプト構文チェック
+cd products/hima
+node --check scripts/perf/perf-test-runner.mjs
+
+# 2. Playwright Chromium 確認
+npx playwright --version
+# 期待値: 1.58.2 以上
+
+# 3. hima.agiinc.io 疎通確認
+curl -s -o /dev/null -w "%{http_code}" https://hima.agiinc.io
+# 期待値: 200
+
+# 4. api-hima.agiinc.io 疎通確認
+curl -s -o /dev/null -w "%{http_code}" https://api-hima.agiinc.io
+# 期待値: 403（認証なしリクエストの正常応答）
+
+# 5. API キー設定確認
+echo "OPENAI: ${OPENAI_API_KEY:0:8}..."
+echo "ANTHROPIC: ${ANTHROPIC_API_KEY:0:10}..."
+echo "GOOGLE: ${GOOGLE_API_KEY:0:8}..."
+# 各キーのプレフィックスが表示されること
+```
+
+### 6.3 本番実行時の注意点
 
 1. **実 API の遅延**: mockモードでは 100-500ms だったが、実 API では数秒かかるケースがある。タイムアウト値を十分に確保すること
 2. **キャンセルテスト**: mockではキャンセル前に完了したが、本番では `cancelAfterMs=12000ms` でキャンセルが発動する可能性が高い
 3. **メモリ精度**: headless Chromium の `performance.memory` は概算値。可能なら `--headless=false` で実行し `measureUserAgentSpecificMemory` を使用
 4. **レートリミット**: `api-hima.agiinc.io` のレートリミット（100 req/min/IP）に注意。並列度 5 × 100件 = 500リクエストが短時間に集中する場合、429 エラーが発生する可能性あり
 5. **エラー率**: 実 API ではネットワーク不安定やプロバイダ側の一時障害でエラー率が mockより高くなる
+
+### 6.4 レートリミット対策（api-hima 100 req/min/IP）
+
+api-hima.agiinc.io のレートリミットは **100 req/min/IP**。テスト中に 429 エラーが多発した場合の対処手順:
+
+#### 事前対策
+
+- P-13 の3プロバイダ順次実行は、各プロバイダ間で **5分のクールダウン** を設ける
+  ```bash
+  # プロバイダを個別に実行する場合
+  node scripts/perf/perf-test-runner.mjs --scenario=p13 --providers=openai --timeout-ms=1200000
+  sleep 300  # 5分待機
+  node scripts/perf/perf-test-runner.mjs --scenario=p13 --providers=anthropic --timeout-ms=1200000
+  sleep 300
+  node scripts/perf/perf-test-runner.mjs --scenario=p13 --providers=google --timeout-ms=1200000
+  ```
+
+#### 429 エラー発生時の対処
+
+1. テストを即時中断（スクリプトは 429 をエラーとしてカウントする）
+2. 5分待機し、レートリミットウィンドウのリセットを待つ
+3. 該当プロバイダのみで再実行
+4. 429 が繰り返す場合、`MAX_CONCURRENCY` を下げるか（ソース修正必要）、テスト件数を分割して実行
+
+#### 計算目安
+
+| シナリオ | リクエスト数 | 所要時間概算 | 429リスク |
+|----------|------------|-------------|----------|
+| P-13（1プロバイダ100件） | 100 | 〜20分 | 低（5並列で分散） |
+| P-14（100件） | 100 | 〜20分 | 低 |
+| P-15（100+200+300件） | 600 | 〜90分 | 中（300件で集中する可能性あり） |
+
+P-15 の 300件実行時は特に注意が必要。100件ずつ3回に分けて実行し、各回の間に2分の待機を入れることを推奨。
 
 ## 7. 障害時の対処方針
 
