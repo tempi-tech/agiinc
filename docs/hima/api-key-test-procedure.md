@@ -145,7 +145,89 @@
 - 開発者ツール Network で失敗が発生した場合、対象URL / ステータス / エラーメッセージを記録
 - 失敗時のみ、キー再発行日時と再試行回数を記録
 
-## 6. 備考
+## 6. W10 パフォーマンステスト用 環境変数設定
+
+### 6.1 perf-test-runner.mjs が参照する環境変数
+
+`products/hima/scripts/perf/perf-test-runner.mjs` は以下の環境変数を `process.env` から読み取る。各プロバイダで複数の変数名をフォールバック順に参照する。
+
+| プロバイダ | 優先順位1 | 優先順位2 | 優先順位3 |
+|---|---|---|---|
+| OpenAI | `OPENAI_API_KEY` | `OPENAI_KEY` | — |
+| Anthropic | `ANTHROPIC_API_KEY` | `ANTHROPIC_KEY` | — |
+| Google AI | `GOOGLE_API_KEY` | `GOOGLEAI_KEY` | `GOOGLE_AI_KEY` |
+
+推奨: 優先順位1の変数名（`OPENAI_API_KEY` / `ANTHROPIC_API_KEY` / `GOOGLE_API_KEY`）を使用すること。
+
+### 6.2 ローカル開発環境での設定方法
+
+#### 方法A: .env ファイル（推奨）
+
+`products/hima/.env` にキーを記載し、実行時に読み込む。`.env` は `.gitignore` 対象のためリポジトリには含まれない。
+
+```bash
+# products/hima/.env
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx
+ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx
+GOOGLE_API_KEY=AIzaxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+実行:
+
+```bash
+cd products/hima
+export $(cat .env | xargs)
+node scripts/perf/perf-test-runner.mjs --scenario=p13 --url=https://hima.agiinc.io
+```
+
+#### 方法B: インライン環境変数
+
+```bash
+cd products/hima
+OPENAI_API_KEY=sk-... ANTHROPIC_API_KEY=sk-ant-... GOOGLE_API_KEY=AIza... \
+  node scripts/perf/perf-test-runner.mjs --scenario=p13 --url=https://hima.agiinc.io
+```
+
+#### 方法C: シェルプロファイルに export
+
+`~/.zshrc` 等に `export OPENAI_API_KEY=...` を記載する方法。永続的に設定される。テスト専用キーの場合は方法A/B を推奨。
+
+### 6.3 Cloudflare Worker（api-hima.agiinc.io）の設定
+
+hima の CORS プロキシ Worker（`products/hima/worker/`）はユーザーの API キーをブラウザ側のリクエストヘッダから透過的に転送する設計のため、Worker 自体に API キーの環境変数設定は不要。
+
+- `wrangler.toml` の `[vars]` には `ALLOWED_ORIGIN` のみ設定
+- API キーはフロントエンドの localStorage に保存され、リクエスト時に `Authorization` / `x-api-key` ヘッダで送信される
+- Worker はヘッダをそのまま各プロバイダ API に転送する
+
+参考: Worker が `.dev.vars` でシークレットを管理する必要がある場合は以下の手順となるが、現行アーキテクチャでは不要。
+
+```bash
+# products/hima/worker/.dev.vars（ローカル開発時のみ、現在は未使用）
+# SOME_SECRET=value
+```
+
+```bash
+# 本番 Worker にシークレットを設定する場合（現在は未使用）
+# cd products/hima/worker
+# wrangler secret put SOME_SECRET
+```
+
+### 6.4 ローカル開発環境 vs 本番環境の使い分け
+
+| 項目 | ローカル開発 | 本番（hima.agiinc.io） |
+|---|---|---|
+| テスト URL | `http://localhost:5173` | `https://hima.agiinc.io` |
+| API プロキシ | ローカル Worker or 直接 | `https://api-hima.agiinc.io` |
+| API キー設定場所 | `.env` / インライン環境変数 | `.env` / インライン環境変数 |
+| perf-test-runner の `--url` | `--url=http://localhost:5173` | `--url=https://hima.agiinc.io`（デフォルト） |
+| mockモード | `--mock` フラグで API キー不要 | `--mock` フラグで API キー不要 |
+| メモリ計測精度 | headless: 概算値 | `--headless=false` 推奨 |
+
+W10 パフォーマンステストでは本番環境（`https://hima.agiinc.io`）を対象とする。ローカルでの事前確認には `--mock` フラグを使用可能。
+
+## 7. 備考
 
 - 本手順は P-01 の「登録・更新・削除・マスク表示」テストの実キー到達確認補助として使用し、実施後に `docs/hima/launch-checklist.md` の P-01 を `成功` に更新する。
 - 実 API キーの値は本書に記載しない。マスキング済み文字列（例: `sk-abcd...xyz`）は許容する。
+- W10 パフォーマンステストの詳細な実行計画は `docs/hima/perf-test-w10-execution-plan.md` を参照。
