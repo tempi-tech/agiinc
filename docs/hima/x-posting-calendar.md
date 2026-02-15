@@ -297,10 +297,10 @@ X Premium+ の予約投稿機能を使用する場合:
 
 ### X ハンドルの不一致
 
-- `x-operations.md`: `@ctgptlb`
+- `x-operations.md`: `@agilab_agiinc`
 - `content-publishing-roadmap.md`: `@agilab_agiinc`
 
-現在の運用アカウントは **@ctgptlb**（`x-operations.md` 記載）。`content-publishing-roadmap.md` のハンドル表記を修正する必要あり。
+現在の運用アカウントは **@agilab_agiinc**（`x-operations.md` 記載）。`content-publishing-roadmap.md` のハンドル表記は最新状態で一致。
 
 ### テンプレート投稿の実数値差し込みフロー
 
