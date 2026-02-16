@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>A2 — Countdown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #1A1A1A;
+    margin: 0;
+    padding: 0;
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  }
+
+  .canvas {
+    width: 1200px;
+    height: 675px;
+    background: #1A1A1A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle decorative circles — dark variant (inverted from A5) */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .canvas::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 240px;
+    height: 240px;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .number {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 120px;
+    color: #FFFFFF;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .sub-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #6B6B6B;
+    margin-top: 24px;
+  }
+
+  .url {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6B6B6B;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="content">
+    <div class="number">4</div>
+    <div class="sub-text">days to Hima</div>
+    <div class="url">hima.agiinc.io</div>
+  </div>
+</div>
+</body>
+</html>

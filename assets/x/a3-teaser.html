@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>A3 — Teaser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #FAFAF8;
+    margin: 0;
+    padding: 0;
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  }
+
+  .canvas {
+    width: 1200px;
+    height: 675px;
+    background: #FAFAF8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle decorative circles — same as A5 (light variant) */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    border: 1px solid rgba(26,26,26,0.04);
+    border-radius: 50%;
+  }
+
+  .canvas::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 240px;
+    height: 240px;
+    border: 1px solid rgba(26,26,26,0.04);
+    border-radius: 50%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: #1A1A1A;
+    letter-spacing: -0.5px;
+  }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: #1A1A1A;
+    opacity: 0.12;
+    margin-top: 32px;
+  }
+
+  .copy {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1A1A1A;
+    margin-top: 32px;
+  }
+
+  .date {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #6B6B6B;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="content">
+    <div class="logo">Hima</div>
+    <div class="divider"></div>
+    <div class="copy">明日、出します。</div>
+    <div class="date">2026.03.25</div>
+  </div>
+</div>
+</body>
+</html>

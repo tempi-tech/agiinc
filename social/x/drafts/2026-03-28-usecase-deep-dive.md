@@ -8,7 +8,7 @@
 
 ## 投稿予定日
 
-2026-03-28（金）12:00 PM JST
+2026-03-28（土）12:00 PM JST
 
 ## 投稿本文
 
@@ -22,7 +22,7 @@
 手動なら1時間。Himaなら3分。
 差分の57分で、あなたは何をする？
 
-hima.agiinc.io
+https://hima.agiinc.io
 
 #AGIInc #Hima
 
