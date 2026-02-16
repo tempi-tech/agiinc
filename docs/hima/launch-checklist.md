@@ -1,13 +1,13 @@
 # Hima ローンチ準備チェックリスト（2026-03-25）
 
-> PdM パク・ミンジュン | 2026-02-17 更新 | ステータス: 実行管理版（ローンチ準備）
+> PdM パク・ミンジュン | 2026-02-16 更新 | ステータス: 実行管理版（ローンチ準備）
 
 ## 概要
 
 ローンチ日 **2026-03-25（水）** に向けた、プロダクト・技術・コンテンツ横断の最終チェックリスト。
 参照: `docs/hima/mvp-spec.md` / `docs/hima/tech-architecture.md` / `docs/hima/launch-content-strategy.md` / `docs/hima/marketing-strategy.md`
 
-### 進捗サマリー（Session21時点・21セッション・84タスク完了）
+### 進捗サマリー（Session22時点・22セッション・88タスク完了）
 
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
@@ -134,7 +134,7 @@
 **公開ロードマップ**: `docs/hima/content-publishing-roadmap.md` に C-01〜C-04 の全残作業ステップ、3 日間タイムライン（3/24 準備日 + 3/25 ローンチ日 + 3/26 翌日フォロー）、デモ GIF・画像素材の納品スケジュール、リスク対策 5 件、担当者別タスクサマリーを定義済み。
 
 <!-- デモアセット仕様書: CMO APPROVE済み（v2） -->
-**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。Session20で実UI差し替え前提のダークテーマ実装（背景色`#0F172A`）が完了しており、`docs/hima/dark-theme-implementation-report.md` の内容を反映した状態。デモ GIF 制作準備完了（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）。**制作環境セットアップ完了**: Kap 導入 + ffmpeg パイプライン検証 PASS（`demo-env-verification.md`、commit 2bc9f2c）。W09 での実制作に必要な環境前提が解消。
+**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。Session20で実UI差し替え前提のダークテーマ実装（背景色`#0F172A`）が完了しており、`docs/hima/dark-theme-implementation-report.md` の内容を反映した状態。Session22で A4（`assets/x/a4-3step-diagram.png`）と A5（`assets/x/a5-byok-appeal.png`）が前倒し納品され、デモ GIF 制作準備（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）を再確認。**制作環境セットアップ完了**: Kap 導入 + ffmpeg パイプライン検証 PASS（`demo-env-verification.md`、commit 2bc9f2c）。W09 での実制作に必要な環境前提が解消。
 
 **関連進捗 — B2 記事**: B2 ブログ記事「AIのコピペ地獄を終わらせる — Himaの設計思想」（`docs/hima/blog-b2-article.md`）が CMO レビューで正式 APPROVE 済み（`docs/hima/content-review-b2.md`）。Creative による CMO 指摘3点修正完了。blog.agiinc.io/posts/ai-copy-paste-hell/ にデプロイ済み。
 
