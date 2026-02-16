@@ -7,14 +7,14 @@
 ローンチ日 **2026-03-25（水）** に向けた、プロダクト・技術・コンテンツ横断の最終チェックリスト。
 参照: `docs/hima/mvp-spec.md` / `docs/hima/tech-architecture.md` / `docs/hima/launch-content-strategy.md` / `docs/hima/marketing-strategy.md`
 
-### 進捗サマリー（Session22時点・22セッション・88タスク完了）
+### 進捗サマリー（Session23時点・23セッション・92タスク完了）
 
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
 | プロダクト（P-01〜P-19） | 14/19 | 5 | MVP 12 機能中 11 機能テスト PASS。P-13〜P-15 テスト計画+スクリプト準備完了（**Playwright 追加済み**）、P-01 疎通確認手順書作成済み。残は実環境での実施のみ |
 | インフラ（I-01〜I-05） | 2/5 | 3 | I-05 完了。CTO 回帰検証で hima/agiinc/blog PASS。**api-hima CORS Origin P1** は `68382ea` を本番再デプロイ済み（Worker Version `7bcb2666-2072-4101-a74e-eecc7552a403`）し、`docs/hima/post-deploy-regression-2026-02-15-session-api-hima-cors.md` にて許可 Origin CORS/不許可 Origin 非付与/OPTIONS を本番検証 PASS。CTO 回帰検証を含む稼働確認の事前条件を `docs/hima/infra-formal-verification-w12.md` へ統合。 |
 | SEO（S-01〜S-04） | 4/4 | 0 | S-01 OGP 画像制作完了・メタタグ更新済み。S-02〜S-04 完了済み |
-| コンテンツ（C-01〜C-04） | 0/4 | 4 | C-01 B4記事 blog デプロイ済み（draft: true）。C-03/C-04 英語校正完了 APPROVE。C-02 は画像素材待ち。公開予約が残 |
+| コンテンツ（C-01〜C-04） | 0/4 | 4 | C-01 B4記事 blog デプロイ済み（draft: true）。C-03/C-04 英語校正完了 APPROVE。C-02 はA1 デモGIFのみ素材待ち（A2/A3は完了済み、A4/A5は前倒し納品済み）。公開予約が残 |
 | YouTube（Y-01〜Y-03） | 2/3 | 1 | Y-01/Y-02 完了。映像制作・公開準備が残 |
 
 ---
@@ -127,14 +127,14 @@
 **進捗詳細**:
 
 - **C-01**: B4 記事本文は CMO レビュー APPROVE 済み（`content-review-final.md`）。公開ロードマップ策定完了（`content-publishing-roadmap.md`）。**blog.agiinc.io/posts/hima-how-to-use-guide/ に draft: true でデプロイ済み**（Astro ビルド成功、HTTP 200 確認、index.astro に draft フィルタ追加済み）。残作業: 3/25 に draft を外して公開 → 公開後リンク確認
-- **C-02**: ローンチスレッド 5 ツイート（T1-T5）は CMO レビュー APPROVE 済み。公開ロードマップ策定完了。**X投稿カレンダー（W08-W13）策定完了**（`x-posting-calendar.md`、C-02 素材仕様・納品スケジュール・ローンチスレッド手順を具体化）。**Xハンドル @agilab_agiinc に統一完了**。残作業 12 ステップ: UI キャプチャ確認（3/12）→ デモ GIF 1-B 制作（3/14 納品）→ 図解画像 + BYOK 画像制作（3/21 納品）→ アセットレビュー → 投稿予約入稿 → プレビュー確認
+- **C-02**: ローンチスレッド 5 ツイート（T1-T5）は CMO レビュー APPROVE 済み。公開ロードマップ策定完了。**X投稿カレンダー（W08-W13）策定完了**（`x-posting-calendar.md`、C-02 素材仕様・納品スケジュール・ローンチスレッド手順を具体化）。**Xハンドル @agilab_agiinc に統一完了**。残作業は A1（デモGIF）中心で進行中: UI キャプチャ確認（3/12）→ デモ GIF 1-B 制作（3/14 納品）→ A2/A3 は完了済み、A4/A5完了済み→ アセットレビュー → 投稿予約入稿 → プレビュー確認
 - **C-03**: 最終稿が `social/hn/2026-03-25-show-hn.md` に存在。**英語校正完了・CMO APPROVE 済み**（タイトル 75 文字短縮・プレーンテキスト化・人称統一等 6 件修正。`docs/hima/content-review-hn-reddit.md`）。公開ロードマップ策定完了。残作業: HN アカウント確認 → 最終確定 → 3/26 02:00 JST 手動投稿
 - **C-04**: 最終稿が `social/reddit/2026-03-26-launch.md` に存在。r/artificial + r/ChatGPT の 2 版を用意済み。**英語校正完了・CMO APPROVE 済み**（clickbait 削除・CTA 追加等 4 件修正。`docs/hima/content-review-hn-reddit.md`）。公開ロードマップ策定完了。残作業: subreddit ルール確認 → アカウント確認 → 3/26 朝 JST 手動投稿
 
 **公開ロードマップ**: `docs/hima/content-publishing-roadmap.md` に C-01〜C-04 の全残作業ステップ、3 日間タイムライン（3/24 準備日 + 3/25 ローンチ日 + 3/26 翌日フォロー）、デモ GIF・画像素材の納品スケジュール、リスク対策 5 件、担当者別タスクサマリーを定義済み。
 
 <!-- デモアセット仕様書: CMO APPROVE済み（v2） -->
-**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。Session20で実UI差し替え前提のダークテーマ実装（背景色`#0F172A`）が完了しており、`docs/hima/dark-theme-implementation-report.md` の内容を反映した状態。Session22で A4（`assets/x/a4-3step-diagram.png`）と A5（`assets/x/a5-byok-appeal.png`）が前倒し納品され、デモ GIF 制作準備（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）を再確認。**制作環境セットアップ完了**: Kap 導入 + ffmpeg パイプライン検証 PASS（`demo-env-verification.md`、commit 2bc9f2c）。W09 での実制作に必要な環境前提が解消。
+**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。Session20で実UI差し替え前提のダークテーマ実装（背景色`#0F172A`）が完了しており、`docs/hima/dark-theme-implementation-report.md` の内容を反映した状態。Session22で A4（`assets/x/a4-3step-diagram.png`）と A5（`assets/x/a5-byok-appeal.png`）が前倒し納品され、Session23で A2（カウントダウン）/A3（ティーザー）画像を前倒し納品。デモ GIF 制作準備（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）を再確認。**制作環境セットアップ完了**: Kap 導入 + ffmpeg パイプライン検証 PASS（`demo-env-verification.md`、commit 2bc9f2c）。Session23で `demo-capture-guide.md` は収録規格 C案（`objectFit: contain`）を採択し、収録の横縦比整合を統一。
 
 **関連進捗 — B2 記事**: B2 ブログ記事「AIのコピペ地獄を終わらせる — Himaの設計思想」（`docs/hima/blog-b2-article.md`）が CMO レビューで正式 APPROVE 済み（`docs/hima/content-review-b2.md`）。Creative による CMO 指摘3点修正完了。blog.agiinc.io/posts/ai-copy-paste-hell/ にデプロイ済み。
 
