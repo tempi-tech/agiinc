@@ -7,7 +7,7 @@
 ローンチ日 **2026-03-25（水）** に向けた、プロダクト・技術・コンテンツ横断の最終チェックリスト。
 参照: `docs/hima/mvp-spec.md` / `docs/hima/tech-architecture.md` / `docs/hima/launch-content-strategy.md` / `docs/hima/marketing-strategy.md`
 
-### 進捗サマリー（Session19時点・19セッション・76タスク完了）
+### 進捗サマリー（Session21時点・21セッション・84タスク完了）
 
 | カテゴリ | 完了 | 残 | 備考 |
 |---|---|---|---|
@@ -50,7 +50,7 @@
 | P-14 | UI 応答性 | 実行中も UI 操作（スクロール・展開・キャンセル）が破綻しない | Engineer | 3/21 | [ ] |
 | P-15 | メモリ使用確認 | 大量行（100〜300 件）でブラウザクラッシュなし | Engineer | 3/21 | [ ] |
 
-**残アクション**: P-13〜P-15 は実 API キー + 実ブラウザ環境が必要。テスト計画書 `docs/hima/perf-test-plan.md`（手順・環境・合否基準・ボトルネック分析）および自動計測スクリプト `products/hima/scripts/perf/perf-test-runner.mjs`（Puppeteer ベース、100〜300 件バッチ実行＋メモリ/FPS 計測）を作成済み。**2026-02-15 時点: Playwright 依存を worker に追加済み**（`pnpm add -D playwright`）。W10 パフォーマンステスト実行環境の前提条件の一つが解消。W10 にてデプロイ済み環境（hima.agiinc.io）で実測を実施すること。
+**残アクション**: P-13〜P-15 は実 API キー + 実ブラウザ環境が必要。テスト計画書 `docs/hima/perf-test-plan.md`（手順・環境・合否基準・ボトルネック分析）および自動計測スクリプト `products/hima/scripts/perf/perf-test-runner.mjs`（Puppeteer ベース、100〜300 件バッチ実行＋メモリ/FPS 計測）を作成済み。**2026-02-15 時点: Playwright 依存を worker に追加済み**（`pnpm add -D playwright`）。W10 パフォーマンステスト実行環境の前提条件の一つが解消。Session21で `--mock` 実行時の P-14/P-15 対応を完了し、キー未設定時にもモック実行可能状態にしている。W10 にてデプロイ済み環境（hima.agiinc.io）で実測を実施すること。
 **Session14〜17反映**: mock ドライラン（P-13スキップ / P-14 PASS / P-15 PASS）を完了。W10 本番実行計画は `docs/hima/perf-test-w10-execution-plan.md` で確定済み。
 
 **関連完了**: Remotion 1-A v2 が CTO APPROVE、Remotion 1-B v1 が CMO APPROVE で、デモ素材の進捗に関する依存条件は満たしている。
@@ -134,7 +134,7 @@
 **公開ロードマップ**: `docs/hima/content-publishing-roadmap.md` に C-01〜C-04 の全残作業ステップ、3 日間タイムライン（3/24 準備日 + 3/25 ローンチ日 + 3/26 翌日フォロー）、デモ GIF・画像素材の納品スケジュール、リスク対策 5 件、担当者別タスクサマリーを定義済み。
 
 <!-- デモアセット仕様書: CMO APPROVE済み（v2） -->
-**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。デモ GIF 制作準備完了（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）。**制作環境セットアップ完了**: Kap 導入 + ffmpeg パイプライン検証 PASS（`demo-env-verification.md`、commit 2bc9f2c）。W09 での実制作に必要な環境前提が解消。
+**関連進捗 — デモアセット仕様書**: CMO レビューで正式 APPROVE（`docs/hima/content-review-demo-assets-v2.md`）。v2 で 3 点修正（納品日前倒し・ロゴ→テキスト変更・スレッド配置表追加）が反映済み。Session20で実UI差し替え前提のダークテーマ実装（背景色`#0F172A`）が完了しており、`docs/hima/dark-theme-implementation-report.md` の内容を反映した状態。デモ GIF 制作準備完了（シーンスクリプト `demo-scene-script.md` + キャプチャ環境手順 `demo-capture-guide.md` + ダミーデータ `demo-data.csv`）。**制作環境セットアップ完了**: Kap 導入 + ffmpeg パイプライン検証 PASS（`demo-env-verification.md`、commit 2bc9f2c）。W09 での実制作に必要な環境前提が解消。
 
 **関連進捗 — B2 記事**: B2 ブログ記事「AIのコピペ地獄を終わらせる — Himaの設計思想」（`docs/hima/blog-b2-article.md`）が CMO レビューで正式 APPROVE 済み（`docs/hima/content-review-b2.md`）。Creative による CMO 指摘3点修正完了。blog.agiinc.io/posts/ai-copy-paste-hell/ にデプロイ済み。
 
