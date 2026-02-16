@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>A5 — BYOK Appeal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #FAFAF8;
+    margin: 0;
+    padding: 0;
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  }
+
+  .canvas {
+    width: 1200px;
+    height: 675px;
+    background: #FAFAF8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle decorative elements */
+  .canvas::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    border: 1px solid rgba(26,26,26,0.04);
+    border-radius: 50%;
+  }
+
+  .canvas::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 240px;
+    height: 240px;
+    border: 1px solid rgba(26,26,26,0.04);
+    border-radius: 50%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .lock-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 32px;
+    opacity: 0.2;
+  }
+
+  .lock-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: #1A1A1A;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .main-copy {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #1A1A1A;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 40px;
+  }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: #1A1A1A;
+    opacity: 0.12;
+    margin-bottom: 40px;
+  }
+
+  .providers {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1A1A;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .providers .slash {
+    color: #CCCCCC;
+    font-weight: 400;
+  }
+
+  .supplement {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #6B6B6B;
+    line-height: 1.8;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="content">
+
+    <div class="lock-icon">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+
+    <div class="main-copy">
+      Your Keys. Your Data. Your Browser.
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="providers">
+      <span>OpenAI</span>
+      <span class="slash">/</span>
+      <span>Anthropic</span>
+      <span class="slash">/</span>
+      <span>Google</span>
+    </div>
+
+    <div class="supplement">
+      完全クライアントサイド処理。サーバーにデータを預けない。
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

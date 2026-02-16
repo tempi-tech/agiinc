@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>A4 — 3 Step Diagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #F0EEEB;
+    margin: 0;
+    padding: 0;
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+  }
+
+  .canvas {
+    width: 1200px;
+    height: 675px;
+    background: #F0EEEB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .steps-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    padding: 0 60px;
+  }
+
+  .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .step-number {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #9B9B9B;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .step-icon {
+    width: 72px;
+    height: 72px;
+    background: #FFFFFF;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .step-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: #1A1A1A;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .step-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1A1A;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .step-desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6B6B6B;
+    line-height: 1.7;
+    max-width: 240px;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 48px;
+    margin-bottom: 24px;
+  }
+
+  .arrow svg {
+    width: 32px;
+    height: 32px;
+    stroke: #BBBBBB;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="steps-container">
+
+    <!-- Step 1 -->
+    <div class="step">
+      <div class="step-number">Step 1</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="step-title">レシピを書く</div>
+      <div class="step-desc">プロンプトテンプレートを<br>作成。変数を {{}} で指定</div>
+    </div>
+
+    <!-- Arrow 1 -->
+    <div class="arrow">
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="14 7 19 12 14 17"/>
+      </svg>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="step-number">Step 2</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      </div>
+      <div class="step-title">CSVを放り込む</div>
+      <div class="step-desc">データを CSV でアップロード。<br>100 件でも 1,000 件でも</div>
+    </div>
+
+    <!-- Arrow 2 -->
+    <div class="arrow">
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="14 7 19 12 14 17"/>
+      </svg>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+      <div class="step-number">Step 3</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </div>
+      <div class="step-title">結果をエクスポート</div>
+      <div class="step-desc">AI が一括処理した結果を<br>CSV でダウンロード</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
