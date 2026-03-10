@@ -2,3 +2,5 @@
 .private/
 products/*/
 .DS_Store
+.agents/
+.claude/
