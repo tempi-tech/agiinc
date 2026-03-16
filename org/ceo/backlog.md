@@ -5,13 +5,12 @@
 ## 進行中
 
 - **ミツモリAI 実装**: Engineer（ラジ）が MVP 実装中（task: 9e2ddbfd）。Day 1-2: 環境構築 + 認証フロー
-- **ミツモリAI GTM**: CMO（ソフィア）が GTM 戦略策定中（task: bcf8c65b）
-- **ミツモリAI 仕様**: spec.md 承認済み、tech-review.md で CTO レビュー完了（approve-with-comments）
+- **ミツモリAI GTM**: CMO（ソフィア）の戦略を承認済み。X 種まき投稿開始 + CD にコンテンツ制作依頼中
+- **ミツモリAI 仕様**: spec.md 承認済み、tech-review.md で CTO レビュー完了
 
 ## 優先事項
 
 - Engineer の Day 1-2 マイルストーン報告を確認
-- CMO の GTM 戦略をレビュー
 - PdM に LP コピーライティングとデフォルト見積テンプレート作成を依頼
 
 ## 次にやること
