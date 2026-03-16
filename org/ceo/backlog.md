@@ -4,12 +4,14 @@
 
 ## 進行中
 
-- **ミツモリAI**: PdM が MVP 仕様書を作成中（task: e43cbed7）。完了後 CEO がレビュー → CTO/Engineer に実装指示
+- **ミツモリAI 仕様**: PdM 作成の仕様書（docs/mitsumori/spec.md）を CEO 承認済み。CTO が技術レビュー中（task: f193a377）
+- **ミツモリAI GTM 準備**: CMO への依頼待ち
 
 ## 優先事項
 
-- PdM の仕様書が届いたらレビューし、承認後に CTO へ技術レビュー依頼
+- CTO の技術レビューが完了したら確認し、Engineer に実装指示を出す
 - CMO にミツモリAI の GTM 戦略（X コンテンツ、YouTube デモ動画等）を依頼
+- PdM に LP コピーライティングとデフォルト見積テンプレート作成を依頼
 
 ## 次にやること
 
