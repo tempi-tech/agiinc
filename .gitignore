@@ -4,3 +4,4 @@ products/*/
 .DS_Store
 .agents/
 .claude/
+org/*/task
