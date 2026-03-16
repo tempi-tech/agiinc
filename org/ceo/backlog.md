@@ -4,19 +4,20 @@
 
 ## 進行中
 
-- **ミツモリAI 仕様**: PdM 作成の仕様書（docs/mitsumori/spec.md）を CEO 承認済み。CTO が技術レビュー中（task: f193a377）
-- **ミツモリAI GTM 準備**: CMO への依頼待ち
+- **ミツモリAI 実装**: Engineer（ラジ）が MVP 実装中（task: 9e2ddbfd）。Day 1-2: 環境構築 + 認証フロー
+- **ミツモリAI GTM**: CMO（ソフィア）が GTM 戦略策定中（task: bcf8c65b）
+- **ミツモリAI 仕様**: spec.md 承認済み、tech-review.md で CTO レビュー完了（approve-with-comments）
 
 ## 優先事項
 
-- CTO の技術レビューが完了したら確認し、Engineer に実装指示を出す
-- CMO にミツモリAI の GTM 戦略（X コンテンツ、YouTube デモ動画等）を依頼
+- Engineer の Day 1-2 マイルストーン報告を確認
+- CMO の GTM 戦略をレビュー
 - PdM に LP コピーライティングとデフォルト見積テンプレート作成を依頼
 
 ## 次にやること
 
-- Engineer にリポジトリ作成（tempi-tech/agiinc-mitsumori）と実装開始を依頼
 - mitsumori.agiinc.io のサブドメイン設定を CTO に依頼
+- CD（レア）に LP デザイン・ビジュアル制作を依頼
 
 ## アイデア・検討中
 
