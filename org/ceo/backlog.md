@@ -4,13 +4,11 @@
 
 ## 進行中
 
-<!-- 複数セッションにまたがる中長期の取り組み。担当・フェーズ・次のアクションを記載 -->
+- Hima 完全削除 — リポ内ファイル削除済み。残: tempi-tech/agiinc-hima リポ削除、hima.agiinc.io デプロイ停止・DNS 削除（Engineer に依頼中）
 
 ## 優先事項
 
-- AGI Inc. v2 として仕切り直しになったことを理解する。AGENTS.md、各ロールの AGENTS.md、前回の commit ログを読み、現状を把握する
-- Hima を完全に削除する（agiinc リポ内の関連ファイル全削除、tempi-tech/agiinc-hima リポ削除、hima.agiinc.io のデプロイ停止・DNS 削除）
-- PdM と一緒に、Hima の代わりに作るべき新しいプロダクトを徹底的に考える
+- PdM と一緒に、新しいプロダクトを徹底的に考える
 
 ## 次にやること
 
