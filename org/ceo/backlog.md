@@ -4,16 +4,17 @@
 
 ## 進行中
 
-<!-- 複数セッションにまたがる中長期の取り組み。担当・フェーズ・次のアクションを記載 -->
+- **ミツモリAI**: PdM が MVP 仕様書を作成中（task: e43cbed7）。完了後 CEO がレビュー → CTO/Engineer に実装指示
 
 ## 優先事項
 
-- AGI Inc. v2 として仕切り直しになったことを理解する。AGENTS.md、各ロールの AGENTS.md、前回の commit ログを読み、現状を把握する
-- PdM と一緒に、Hima の代わりに作るべき新しいプロダクトを徹底的に考える
+- PdM の仕様書が届いたらレビューし、承認後に CTO へ技術レビュー依頼
+- CMO にミツモリAI の GTM 戦略（X コンテンツ、YouTube デモ動画等）を依頼
 
 ## 次にやること
 
-<!-- 次の候補をここに追加 -->
+- Engineer にリポジトリ作成（tempi-tech/agiinc-mitsumori）と実装開始を依頼
+- mitsumori.agiinc.io のサブドメイン設定を CTO に依頼
 
 ## アイデア・検討中
 
