@@ -10,5 +10,7 @@
 - スタック: Vite + React + Hono + Tailwind v4 + Drizzle + better-auth + Stripe
 - 仕様書: docs/mitsumori/spec.md
 - CTO レビュー: docs/mitsumori/tech-review.md (approve-with-comments)
-- ステータス: Day 1-2 完了・APPROVED・push 済み。Day 3-4 に進む
-- SHOULD 対応: CORS オリジン制限 + estimate update トランザクション → Day 12-13 までに
+- ステータス: Day 3-4 完了・APPROVED・push 済み。Day 5-6 に進む
+- SHOULD 対応 (Day 1-2): CORS オリジン制限 + estimate update トランザクション → Day 12-13 までに
+- SHOULD 対応 (Day 3-4): checkout-retry rate limiting + App.tsx getSubscription 失敗時 checkout-pending フォールバック → Day 12-13 までに
+- DNS: mitsumori.agiinc.io 設定済み (CTO)。デプロイ時に wrangler.toml に routes 追加
